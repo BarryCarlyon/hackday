@@ -12,7 +12,7 @@ abstract class HttpRequest {
 	public function __construct() {
 	}
 
-	public doRequest() {
+	public function doRequest() {
 		$requestUrl = $baseUrl.$uriPath.'?'.htmlentities($queryString.'&format='.$this->format.'&env='.$this->env);
 		$ch = curl_init();
 		curl_setopt($ch, CURL_OPT, $requestUrl);
