@@ -1,0 +1,20 @@
+Database
+
+$result = $db->get_data($query);
+
+while ($row = $db->fetch_row($result)) {
+        print_r($row);
+        $row['col_name'];
+}
+
+For insert
+$db->insert_id contains the id of the inserted row
+
+For update or delete
+$db->affected_rows contains the no of affectedrows
+
+For select
+$db->total_rows containts the total number of rows
+
+Use $db->protect_data($data) to procet things
+
