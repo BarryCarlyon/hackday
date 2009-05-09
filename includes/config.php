@@ -50,7 +50,7 @@ $database = array(
 */
 $cookie = array(
 	'name'		=> 'fudge',
-	'host'		=> '.lsrfm.com',
+	'host'		=> '.toyshelf.net',
 	'script_path'	=> '/',
 	'secure'	=> 0,
 	'http_only'	=> 0,
@@ -59,9 +59,9 @@ $cookie = array(
 * FTP Details
 */
 $ftp = array(
-	'server'	=> 'ftp.lsrfm.com',
-	'user'		=> 'admin',
-	'pass'		=> 'neilcarlyon13',
+	'server'	=> '',
+	'user'		=> '',
+	'pass'		=> '',
 );
 
 /**
@@ -69,55 +69,6 @@ $ftp = array(
 */
 define('CONFIG_TABLE',		'config');
 define('SESSION_TABLE',		'sessions');
-define('REDIRECT_TABLE',	'redirects');
-
-define('ADMIN_SESSIONS',	'admin_sessions');
-define('ADMIN_SYSTEMS',		'admin_systems');
-
-define('USER_LIST',		'userlist');
-define('PENDING_USER',		'userlist_pending');
-
-define('MEGA_ACCESS',		'mega_access');
-define('MEGA_LISTS',		'mega_lists');
-
-/**
-* SHOWS
-*/
-define('SCHEDULE',              'schedule');
-define('SHOWS',                 'shows');
-define('PRESENTERS',            'presenters');
-
-define('CONTENT',		'website_content');
-define('ADVERTS',		'adverts');
-
-define('NEWS_TABLE',            'news');
-define('HOME_LAYOUT',           'news_layout');
-define('NEWS_CATEGORIES',       'news_categories');
-define('PLAYLIST_TABLE',        'playlist');
-
-define('PODCAST_TABLE',		'podcasts');
-define('PODCAST_SUB_DATA',	'podcast_subs');
-
-define('LISTINGS',		'listings');
-
-/**
-* Admin
-*/
-define('SHOW_PROPOSALS',	'show_proposal');
-define('DOWNLOAD_TRACKER',	'download_tracker');
-define('PRODUCTION_FILES',	'production_files');
-define('PRODUCTION_GRANT',	'production_grant');
-define('ADMIN_PAGE_GRANT',	'admin_page_grant');
-define('XML_SOURCES',		'xml_sources');
-define('EVENTS',		'admin_events');
-
-define('TRACK_LOG',		'track_log');
-
-/**
-* Here be the recaptcha API keys
-*/
-$recaptcha_key = '';
-$recaptcha_prv = '';
 
 /**
 * Publihser
@@ -125,8 +76,8 @@ $recaptcha_prv = '';
 $publisher_data = array(
 	'twitter'	=> array(
 		'enable'	=> TRUE,
-		'user'		=> 'lsrfm_com',
-		'password'	=> 'lemonsrcool',
+		'user'		=> '',
+		'password'	=> '',
 	),
 	'rss'		=> array(
 		'enable'	=> TRUE,
@@ -145,13 +96,13 @@ include('database/' . $database['type'] . '.php');
 * website configuration
 * titles an the like
 */
-$page_title_base = 'LSRfm.com';
-$copyright = 'LSRfm.com - Leeds Student Radio';
+$page_title_base = 'Dumb Deeds';
+$copyright = 'Dumb Deeds';
 $base_timezone = 'Europe/London';
 /**
 * Basic template/common files which should not be included on the sitemap
 */
-$sitemap_exclude = array('content_base', 'content_top', 'blade', 'side_nav', 'info');
+$sitemap_exclude = array();
 
 $days = array(
 	'0'	=> 'Sunday',
