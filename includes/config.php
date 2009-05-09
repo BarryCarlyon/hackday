@@ -41,9 +41,9 @@
 $database = array(
 	'type'	=> 'mysqli',
 	'host'	=> 'localhost',
-	'name'	=> 'lsrfm_com_cmsb',
-	'user'	=> 'admin3889',
-	'pass'	=> 'abacuses',
+	'name'	=> 'hackday',
+	'user'	=> 'hackday',
+	'pass'	=> 'hackdaypass',
 );
 /**
 * Setup and define the cookie details
