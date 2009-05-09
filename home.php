@@ -84,11 +84,7 @@ include('optionals.php');
 * $templates = array('navigation','content_top','content_base','side_nav');
 */
 
-if ($template->path_plode[0] != 'home' && !empty($template->path_plode[0])) {
-	$templates = array('navigation', 'h2', 'content', 'blade', 'main_content');
-} else {
-	$templates = array('navigation', 'h2', 'advert_top', 'content', 'blade', 'main_content');
-}
+$templates = array();
 $post_templates = array();
 
 $template->compile_and_echo($templates, $post_templates);
