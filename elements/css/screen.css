@@ -27,3 +27,21 @@ body {
         display: block;
 }
 
+/* accessability */
+h1 {
+        display: none;
+}
+
+h2, h3, h4, h5, h6, a, p {
+        font-family: verdana, arail, sans-serif;
+        font-size: 8px;
+}
+
+h2 {
+        font-size: 20px;
+}
+
+h3 {
+        font-size: 15px;
+}
+
