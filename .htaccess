@@ -3,9 +3,6 @@ ErrorDocument		404			/
 ErrorDocument		500			"And Register1 Cock Up AGAIN! - SRA ENTRY ADMIN is at http://adminb.lsrfm.com/"
 Redirect Permanent	/sitemap.xml		http://downloads.lsrfm.com/rss/sitemap.xml
 
-#Redirect Permanent	/shows/The+Student+Radio+Chart+Show/ http://www.studentradiochart.com/
-Redirect Permanent	/shows/The+Student+Radio+Chart+Show/ http://LSRfm.com/sra_chart/
-
 DirectoryIndex		index.php
 
 RewriteEngine on
@@ -14,29 +11,6 @@ RewriteEngine on
 RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
 RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
 
-#RewriteCond %{HTTP_REFERER} !^$
-RewriteCond %{HTTP_REFERER} !^http://(.+\.)?lsrfm\.com/ [NC]
-RewriteRule images/gallery/(.*)/(.*)$ http://LSRfm.com/images/missing_image.png [L]
-
-RewriteRule		^mail$			mail/index.html				[L]
-
-#RewriteRule		favicon.ico		favicon.ico				[L]
-#RewriteRule		robots.txt		robots.txt				[L]
-
-#RewriteRule		(.*)$			home.php?file=$1&%{QUERY_STRING}	[L,PT]
-
-#shunts
-RewriteRule		^redlogo.jpg$		/images/redlogo.jpg			[R=301,L]
-#RewriteRule		/breakfast		/shows/The+LSRfm.com+Breakfast+show/	[R=301,L]
-#RewriteRule		/drive			/shows/LSRfm.com+drive/			[R=301,L]
-#RewriteRule		shows/newslink		/newslink				[R=301,L,NC]
-#RewriteRule		^news$			/newslink				[R=301,L]
-#RewriteRule		^news/$			/newslink				[R=301,L]
-
-#RewriteCond %{REQUEST_FILENAME} !-d
-#RewriteCond %{SCRIPT_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteRule ^(.*)$ /home.php/$1 [L]
-#	RewriteRule ^(.*) home.php/$1
-#	RewriteRule ^(.*) index.php/$1
 
