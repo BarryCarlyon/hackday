@@ -1,7 +1,10 @@
+<?php
+
+$this->prehtml .= '
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-gb" xml:lang="en-gb">
 <head profile="http://gmpg.org/xfn/11">
-<title>' . $title . '</title>
+<title>' . $this->page_title . '</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="imagetoolbar" content="no" />
@@ -20,6 +23,8 @@
 <body>
 
 <div id="wrap">
-        <h1>' . $title . '</h>
-        <h2>' . $page_title . '</h2>
+        <h1>' . $this->page_title . '</h>
+        <h2>' . $this->content_title . '</h2>
+';
+
 
