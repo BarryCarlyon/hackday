@@ -7,9 +7,9 @@ abstract class HttpRequest {
 	private $response;
 
 	private $format = 'json';
-	private $env = 'env=http://datatables.org/alltables.env'
+	private $env = 'env=http://datatables.org/alltables.env';
 
-	public __construct() {
+	public function __construct() {
 	}
 
 	public doRequest() {
