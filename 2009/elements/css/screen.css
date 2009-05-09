@@ -2,7 +2,7 @@
 }
 
 html {
-        background: #888888 url('../../elements/site/background.png') left top repeat;
+        background: #888888 url('../../elements/site/background.png') left top repeat-x;
 }
 
 body {
@@ -11,7 +11,7 @@ body {
         padding: 20px 0 20px 0;
         margin-left: auto;
         margin-right: auto;
-        background: #888888 url('../../elements/site/border.png') left top repeat;
+        background: #FFFFFF url('../../elements/site/border.png') left top repeat-x;
 }
 
 #wrap {
