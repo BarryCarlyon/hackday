@@ -1,22 +1,21 @@
 <?php
 
 abstract class HttpRequest {
-	private $baseUrl = 'http://query.yahooapis.com';
-	private $uriPath = 'v1/yql';
+	private $baseUrl = 'http://query.yahooapis.com/';
+	private $uriPath = 'v1/public/yql';
 	private $queryString;
 	private $response;
 
 	private $format = 'json';
-	private $env = 'env=http://datatables.org/alltables.env';
+	private $env = 'http://datatables.org/alltables.env';
 
 	public function __construct() {
 	}
 
 	public function doRequest() {
-		$requestUrl = $baseUrl.$uriPath.'?'.htmlentities($queryString.'&format='.$this->format.'&env='.$this->env);
+		$requestUrl = str_replace('%2A', '*', $this->baseUrl.$this->uriPath.'?q='.rawurlencode($this->queryString).'&format='.rawurlencode($this->format).'&env='.rawurlencode($this->env).'&callback=');
 		$ch = curl_init();
-		curl_setopt($ch, CURL_OPT, $requestUrl);
-		curl_setopt($ch, CURL_POST, 1);
+		curl_setopt($ch, CURLOPT_URL, $requestUrl);
 		$this->response = curl_exec($ch);
 	}
 
@@ -40,7 +39,7 @@ abstract class HttpRequest {
 	}
 
 	public function setQueryString($value) {
-		$this->querySring = $value;
+		$this->queryString = $value;
 	} 
 
 	public function getQueryString() {
