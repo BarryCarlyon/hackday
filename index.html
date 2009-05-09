@@ -1,1 +1,35 @@
-My First Page
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>YUI Test</title>
+
+        <style type="text/css" media="screen">
+            ol#carousel li div {
+                width: 400px;
+                padding: 50px 0;
+                font-size: 40px;
+            }
+        </style>
+
+        <script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/utilities/utilities.js"></script>
+        <script>
+            var callback = {
+                success: handleResponse = function(o) { alert(o.responseText); }
+            };
+            YAHOO.util.Connect.asyncRequest('GET','/rpc.php?str=Rasmus', callback);
+        </script>
+
+    </head>
+    <body class="yui-skin-sam">
+
+        <div id="carouselcontainer">
+            <ol id="carousel">
+                <li>
+                    <div>Monkey</div>
+                </li>
+            </ol>
+        </div>
+
+    </body>
+</html>
