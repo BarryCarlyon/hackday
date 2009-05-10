@@ -61,14 +61,15 @@ li {
         border: 0px;
         display: inline;
         float: left;
-        font-size: 20px;
 }
 
 #navigation a:link, #navigation a:visited, #navigation a:active {
         font-style: none;
+        font-size: 20px;
 }
 
 #navigation a:hover {
         font-style: underline;
+        font-size: 20px;
 }
 
