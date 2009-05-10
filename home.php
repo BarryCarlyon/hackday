@@ -84,7 +84,7 @@ include('optionals.php');
 * $templates = array('navigation','content_top','content_base','side_nav');
 */
 
-$templates = array();
+$templates = array('navigation');
 $post_templates = array();
 
 $template->compile_and_echo($templates, $post_templates);
