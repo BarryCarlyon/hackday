@@ -48,11 +48,11 @@ h3 {
 ul {
         margin: 5px 5px 5px 30px;
         border: 1px solid #EFEFEF;
-        list-style: disc;
+        list-style: square;
 }
 
 li {
-        list-style: disc;
+        list-style: square;
         padding: 0 0 0 5px;
 }
 
