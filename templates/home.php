@@ -9,8 +9,8 @@ $this->prehtml = '
 This is where you type content, its govered by the content management systsm
 </p>
 
-<ul>
-        <li>List Age</li>
+<ul id="results">
+
 </ul>
 
 ';
