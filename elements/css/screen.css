@@ -56,7 +56,7 @@ li {
         padding: 0 0 0 5px;
 }
 
-ul #navigation, li #navigation {
+#navigation, #navigation li {
         list-style: none;
         border: 0px;
         display: inline;
