@@ -8,16 +8,13 @@ $this->html = '
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="imagetoolbar" content="no" />
-<meta name="verify-v1" content="ZnJU6lpdhjfScZXFIyBfTM15l356w81r7mLaneTbKbo=" />
 <meta name="author" content="Barry Carlyon, Caius Durling, Phoenix Rising" />
 
-<link rel="stylesheet" type="text/css" media="screen" href="elements/css/reset.css" />
-<link rel="stylesheet" type="text/css" media="screen" href="elements/css/screen.css" />
-<!--[if IE]><link rel="stylesheet" type="text/css" href="elements/css/ie.css" media="screen" /><![endif]-->
+<link rel="stylesheet" type="text/css" media="screen" href="/elements/css/reset.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/elements/css/screen.css" />
+<!--[if IE]><link rel="stylesheet" type="text/css" href="/elements/css/ie.css" media="screen" /><![endif]-->
 
-<link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon" />
-
-<script type="text/javascript" src="elements/js/common.js"></script>
+<link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
 
 </head>
 <body>
