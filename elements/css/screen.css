@@ -64,12 +64,12 @@ li {
 }
 
 #navigation a:link, #navigation a:visited, #navigation a:active {
-        font-style: none;
+        text-style: none;
         font-size: 20px;
 }
 
 #navigation a:hover {
-        font-style: underline;
+        text-style: underline;
         font-size: 20px;
 }
 
