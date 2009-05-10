@@ -2,7 +2,7 @@
 
 $this->html .= '
 
-<ul> id="navigation">
+<ul id="navigation">
         <li><a href="/">Home</a></li>
 </ul>
 
