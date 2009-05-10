@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>YUI Test</title>
+
+        <style type="text/css" media="screen">
+            ol#carousel li div {
+                width: 400px;
+                padding: 50px 0;
+                font-size: 40px;
+            }
+        </style>
+
+        <script src="jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="jquery.dimensions.min.js" type="text/javascript" charset="utf-8"></script>
+
+        <script>
+            $(document).ready(function() {
+                function update_page() {
+                    var deeds_list = $('#deeds');
+                    // Pull in remote reason
+                    var deed = $("<li></li>").attr('class', 'deed');
+                    deed.load("/deed.php");
+                    deed.appendTo(deeds_list);
+                    
+                };
+                
+                function check_li_positions () {
+                    var window_height = $(window).height();
+                    var last_li = $('li.deed:last');
+                    var last_li_bottom = last_li.position().top + last_li.height();
+                                        
+                    if (last_li_bottom >= window_height) {
+                        $('li.deed:first').remove();
+                    };
+                }
+                
+                setInterval(update_page, 2000);
+                setInterval(check_li_positions, 10);
+            });
+
+        </script>
+
+    </head>
+    <body>
+        <hr />
+        <ul id="deeds"></ul>
+        <hr />
+    </body>
+</html>
