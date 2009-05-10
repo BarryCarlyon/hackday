@@ -36,7 +36,7 @@
 */
 
 $start_time = microtime(true);
-set_include_path(get_include_path() . PATH_SEPARATOR . dirname(__FILE__) . '/includes/');
+set_include_path(dirname(__FILE__) . '/includes' . PATH_SEPARATOR . get_include_path() );
 
 //load some basic functions
 include('functions.php');
