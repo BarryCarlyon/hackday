@@ -6,5 +6,7 @@ $this->html .= '
         <li><a href="/">Home</a></li>
 </ul>
 
+<div class="blocker"></div>
+
 ';
 
