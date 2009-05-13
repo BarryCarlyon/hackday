@@ -11,13 +11,15 @@ $this->html = '
 <meta name="verify-v1" content="ZnJU6lpdhjfScZXFIyBfTM15l356w81r7mLaneTbKbo=" />
 <meta name="author" content="Barry Carlyon, Caius Durling, Phoenix Rising" />
 
-<link rel="stylesheet" type="text/css" media="screen" href="elements/css/reset.css" />
-<link rel="stylesheet" type="text/css" media="screen" href="elements/css/screen.css" />
-<!--[if IE]><link rel="stylesheet" type="text/css" href="elements/css/ie.css" media="screen" /><![endif]-->
+<link rel="stylesheet" type="text/css" media="screen" href="/elements/css/reset.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/elements/css/screen.css" />
+<!--[if IE]><link rel="stylesheet" type="text/css" href="/elements/css/ie.css" media="screen" /><![endif]-->
 
 <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon" />
 
-<script type="text/javascript" src="elements/js/common.js"></script>
+<script type="text/javascript" src="/elements/js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="/elements/js/jquery.dimensions.min.js"></script>
+<script type="text/javascript" src="/elements/js/dumbdeeds.js"></script>
 
 </head>
 <body>

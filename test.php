@@ -1,12 +1,15 @@
-<?php 
+<pre><?php 
 
-require_once("classes/HttpRequest.php");
-require_once("classes/Twitter.php");
+require("classes/HttpRequest.php");
+require("classes/Twitter.php");
+require("classes/Flickr.php");
 
-$twitter = new Twitter();
-$twitter->queryUser('phoenix_rises', 'twitter.user.timeline');
-$twitter->doRequest();
+# $twitter = new Twitter();
+# $data = $twitter->search('@caius');
 
-var_dump($twitter->getResponse());
+$flickr = new Flickr();
+$data = $flickr->search("openhacklondon");
+
+var_dump( $data );
 
 ?>

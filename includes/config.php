@@ -50,7 +50,7 @@ $database = array(
 */
 $cookie = array(
 	'name'		=> 'fudge',
-	'host'		=> '.toyshelf.net',
+	'host'		=> ".{$_SERVER["HTTP_HOST"]}",
 	'script_path'	=> '/',
 	'secure'	=> 0,
 	'http_only'	=> 0,

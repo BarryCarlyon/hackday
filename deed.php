@@ -2,4 +2,8 @@
 
 <small><?php echo time(); ?></small>
 
-<p>Something happens here</p>
+<?php if (rand(1,2) == 1): ?>
+    <img src="http://localhost/image_block.png" height='50px' />
+<?php else: ?>
+    <p>Something happens here</p>
+<?php endif ?>
