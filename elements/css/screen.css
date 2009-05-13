@@ -56,3 +56,20 @@ li {
         padding: 0 0 0 5px;
 }
 
+#navigation, #navigation li {
+        list-style: none;
+        border: 0px;
+        display: inline;
+        float: left;
+}
+
+#navigation a:link, #navigation a:visited, #navigation a:active {
+        text-decoration: none;
+        font-size: 20px;
+}
+
+#navigation a:hover {
+        text-decoration: underline;
+        font-size: 20px;
+}
+
