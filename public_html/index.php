@@ -12,9 +12,12 @@ include('twitteroauth/twitteroauth.php');
 $pages = array('home', 'login');
 $default = 'home';
 
-$page = $_GET['page'];
+$page = $_GET['page'] ? $_GET['page'] : 'home';
 
 if (!in_array($page, $pages)) {
+	$page = 404;
+}
+if (!is_file(TEMPLATES . $page . '.php')) {
 	$page = 404;
 }
 
