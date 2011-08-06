@@ -1,6 +1,6 @@
 <?php
 
-class config() {
+class config {
 	var $twitter_oauth_key = '';
 	var $twitter_oauth_secret = '';
 	

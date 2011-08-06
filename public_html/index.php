@@ -22,7 +22,16 @@ if (!is_file(TEMPLATES . $page . '.php')) {
 }
 
 // login controller
+include('config.php');
 include('login.php');
+
+$config = new config();
+$login = new login();
+if (@$_GET['restart']) {
+	$login->restart();
+	header('Location: /');
+	exit;
+}
 
 include(TEMPLATES . 'common/header.php');
 include(TEMPLATES . $page . '.php');

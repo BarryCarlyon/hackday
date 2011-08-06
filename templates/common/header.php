@@ -30,6 +30,13 @@ body {
 .center {
 	text-align: center;
 }
+
+#wrap div {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
 </style>
 
 </head>
