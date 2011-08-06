@@ -21,7 +21,11 @@ function update_game() {
 				jQuery('#game_responses').html('');
 			}
 
-			jQuery('#game_responses').html(jQuery('#game_responses').html() + '<br />' + entry['user'] + ' suggested <a href="' + entry['url'] + '">' + entry['artist'] + '</a>');
+			if (jQuery('#game_responses').html()) {
+				jQuery('#game_responses').html(jQuery('#game_responses').html() + '<br />' + entry['user'] + ' suggested <a href="' + entry['url'] + '">' + entry['artist'] + '</a>');
+			} else {
+				jQuery('#game_responses').html(entry['user'] + ' suggested <a href="' + entry['url'] + '">' + entry['artist'] + '</a>');
+			}
 			total_results++;
 			
 			if (entry['mid'] > lastid) {

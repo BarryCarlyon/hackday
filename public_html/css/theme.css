@@ -83,3 +83,7 @@ a:link, a:active, a:visited, a:hover {
 fieldset {
 	border: 0px;
 }
+
+#game_responses {
+	padding: 10px;
+}
