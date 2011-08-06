@@ -9,14 +9,10 @@ var total_results = 0;
 var mid = '';
 var post = 'game=1';
 var lastid = 0;
+var request_count = 0;
 
 function update_game() {
-	console.log('update game');
-	
 	jQuery.getJSON('/json/', post, function(data) {
-		console.log('woo');
-		console.log(data);
-
 		for (x in data) {
 			entry = data[x];
 			if (run) {
@@ -34,7 +30,8 @@ function update_game() {
 		}
 	});
 	
-	if (total_results < 20) {
+	if (total_results < 20 && request_count < 60) {
 		setTimeout('update_game()', 5000);
 	}
+	request_count++;
 }
