@@ -4,17 +4,18 @@ class Spotify {
 	var $api_base = 'http://ws.spotify.com/';
 	var $api_key = '';
 	var $version = 1;
+	var $jsonobject = FALSE;
 	
-	function __construct($api_key) {
-		$this->api_key = $api_key;
+	function __construct() {//}$api_key) {
+//		$this->api_key = $api_key;
 	}
 
 	function __destruct() {
 	}
 	
-//	private function addParameter($name, $value) {
-//		$this->parameters[$name] = $value;
-//	}
+	private function addParameter($name, $value) {
+		$this->parameters[$name] = $value;
+	}
 	
 	private function run() {
 		// burn baby burn
