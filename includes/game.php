@@ -111,6 +111,18 @@ class game {
 			// album
 			$albums = $spotify->lookup_artist($result_1->href, 'album');
 			$albums = $albums->artist->albums;
+			
+			// stop
+			// non various artists please
+			$misc_albums = $albums;
+			$albums = array();
+			foreach ($misc_albums as $album) {
+				if ($album->album->artist == $artist) {
+					// keeper
+					$albums[] = $album;
+				}
+			}
+			
 			shuffle($albums);
 			$album = array_pop($albums);
 			$albumuri = $album->album->href;

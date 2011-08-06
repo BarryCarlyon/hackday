@@ -104,6 +104,10 @@ class Spotify {
 		}
 		
 		return $this->run();
+		$data = $this->run();
+		echo '<pre>';
+		print_r($data);
+		exit;
 	}
 	public function lookup_album($albumruri, $extras = '') {
 		$this->service = 'lookup';
