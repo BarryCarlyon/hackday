@@ -93,12 +93,12 @@ class login {
 		
 		$return .= '<img src="' . $img . '" alt="You" title="You" class="left" />';
 		$return .= '<p>' . $this->account_data->screen_name . '</p>';
-		$return .= '<form action="/play/" method="post">
-<fieldset>
-	<input type="hidden" name="go" value="go" />
-	<input type="submit" value="Play Spotify Roulette" />
-</fieldset>
-</form>';
+		
+		$game = new game();
+		if (!@$_POST['game_start']) {
+			$return .= $game->form();
+		}
+		
 		$return .= '<p><a href="/logout/">Logout</a></p>';
 		
 		return $return;

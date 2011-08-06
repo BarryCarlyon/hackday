@@ -11,12 +11,17 @@
 <meta http-equiv="content-style-type" content="text/css" /> 
 <meta http-equiv="imagetoolbar" content="no" /> 
  
-<title>Spotify Roulette | Home</title>
+<title>Spotify Roulette | <?php echo ucwords($page); ?></title>
 
 <link rel="SHORTCUT ICON" type="image/vnd.microsoft.icon" href="/favicon.ico" /> 
 <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" /> 
 <link rel="icon" type="image/gif" href="/favicon.gif" /> 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.15/jquery-ui.min.js"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="http://jquery-ui.googlecode.com/svn/tags/latest/themes/base/jquery.ui.all.css" />
+<script type="text/javascript" src="/game.js"></script>
 
 <style type="text/css">
 html {

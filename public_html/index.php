@@ -36,6 +36,7 @@ if (!is_file(TEMPLATES . $page . '.php')) {
 include('common.php');
 include('config.php');
 include('login.php');
+include('game.php');
 
 //include('database.php');
 //$log = new log();
@@ -53,6 +54,10 @@ if (@$_GET['restart']) {
 }
 //print_r($_SESSION);
 
-include(TEMPLATES . 'common/header.php');
+if ($page != 'json') {
+	include(TEMPLATES . 'common/header.php');
+}
 include(TEMPLATES . $page . '.php');
-include(TEMPLATES . 'common/footer.php');
+if ($page != 'json') {
+	include(TEMPLATES . 'common/footer.php');
+}
