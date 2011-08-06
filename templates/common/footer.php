@@ -1,7 +1,8 @@
+	</div>
 </div>
 
 <?php
-$log->outputlog();
+//$log->outputlog();
 ?>
 
 </body>

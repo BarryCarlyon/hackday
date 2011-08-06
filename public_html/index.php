@@ -9,7 +9,7 @@ define('TEMPLATES', dirname(__FILE__) . '/../templates/');
 include('spotify.php');
 include('twitteroauth/twitteroauth.php');
 
-$pages = array('home', 'login');
+//$pages = array('home', 'login', 'logout');
 $default = 'home';
 
 $tried = '';
@@ -21,10 +21,12 @@ if (substr($page, -1, 1) == '/') {
 }
 
 // 404 catches with matches
+/*
 if (!in_array($page, $pages)) {
 	$tried = $page;
 	$page = 404;
 }
+*/
 if (!is_file(TEMPLATES . $page . '.php')) {
 	$tried = $page;
 	$page = 404;
@@ -35,13 +37,13 @@ include('common.php');
 include('config.php');
 include('login.php');
 
-include('database.php');
-$log = new log();
+//include('database.php');
+//$log = new log();
 
 // instantiate
 $config = new config();
 
-$database = new db($config->database);
+//$db = new db($config->database);
 
 $login = new login();
 if (@$_GET['restart']) {

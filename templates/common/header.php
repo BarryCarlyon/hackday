@@ -38,6 +38,27 @@ body {
 	
 	border: 1px solid #000;
 }
+#left_column {
+	width: 680px;
+	float: left;
+}
+#right_column {
+	width: 250px;
+	float: right;
+}
+#left_column, #right_column, #profile {
+	padding: 10px;
+	overflow: hidden;
+}
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+p {
+	margin: 5px 3px;
+}
 
 </style>
 
@@ -48,4 +69,16 @@ body {
 
 <?php
 echo run_error_message();
+
+echo '<div id="right_column">
+<div id="profile">
+';
+
+if ($login->is_logged_in) {
+	echo $login->twitter_profile();
+}
+
 ?>
+	</div>
+</div>
+<div id="left_column">

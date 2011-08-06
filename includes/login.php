@@ -6,8 +6,10 @@
 
 class login {
 	var $is_logged_in = FALSE;
-	
+	var $connection;
+
 	function __construct() {
+		global $config;
 		session_start();
 		
 		// detcech call backs
@@ -17,14 +19,46 @@ class login {
 			$this->twitter_login();
 		}
 		if (@$_GET['oauth_token'] && @$_GET['oauth_verifier'] && @$_SESSION['go_login'] == 'twitter') {
+			unset($_SESSION['go_login']);
 			// return from twitter
 			$token = $_GET['oauth_token'];
 			$verify = $_GET['oauth_verifier'];
 			
 			// we have keys
+			$oauth_token_secret = $_SESSION['oauth_token_secret'];
 			
+			$this->connection = new TwitterOAuth($config->twitter_oauth_key, $config->twitter_oauth_secret, $token, $oauth_token_secret);
+			$access_token = $this->connection->getAccessToken($verify);
+			
+			if ($access_token['user_id']) {
+				$_SESSION['oauth_token'] = $access_token['oauth_token'];
+				$_SESSION['oauth_token_secret'] = $access_token['oauth_token_secret'];
+				$_SESSION['oauth_verifier'] = $verify;
+				$_SESSION['twitter_user_id'] = $access_token['user_id'];
+				$_SESSION['twitter_screen_name'] = $access_token['screen_name'];
+				
+				$this->is_logged_in = TRUE;
+				
+				header('Location: /');
+				exit;
+			} else {
+				add_error_message('An Error Occurred in the Return Auth');
+			}
 		} else if (@$_SESSION['go_login'] == 'twitter') {
-			add_error_message('An Error Occurred');
+			add_error_message('An Error Occurred in the Session Controller');
+		}
+		
+		if (@$_SESSION['oauth_token'] && @$_SESSION['oauth_token_secret']) {
+			$this->connection = new TwitterOAuth($config->twitter_oauth_key, $config->twitter_oauth_secret, $_SESSION['oauth_token'], $_SESSION['oauth_token_secret']);
+			$content = $this->connection->get('account/verify_credentials');
+			if ($this->connection->http_code == 200) {
+				$this->account_data = $content;
+				$this->is_logged_in = TRUE;
+			} else {
+				// session is invalid
+				session_destroy();
+				session_start();
+			}
 		}
 	}
 	
@@ -34,13 +68,17 @@ class login {
 	}
 	
 	function twitter_login() {
-		global $config;
+		global $config, $db;
 		
-		$connection = new TwitterOAuth($config->twitter_oauth_key, $config->twitter_oauth_secret);
-		$request_token = $connection->getRequestToken('http://' . $_SERVER['HTTP_HOST'] . '/login/');
-		switch ($connection->http_code) {
+		$this->connection = new TwitterOAuth($config->twitter_oauth_key, $config->twitter_oauth_secret);
+		$request_token = $this->connection->getRequestToken('http://' . $_SERVER['HTTP_HOST'] . '/login/');
+		switch ($this->connection->http_code) {
 			case 200:
-				$url = $connection->getAuthorizeUrl($request_token['oauth_token'], FALSE);
+				// user....
+				$_SESSION['oauth_token'] = $request_token['oauth_token'];
+				$_SESSION['oauth_token_secret'] = $request_token['oauth_token_secret'];
+				
+				$url = $this->connection->getAuthorizeUrl($request_token['oauth_token'], FALSE);
 				header('Location: ' . $url);
 				exit;
 			default:
@@ -48,4 +86,21 @@ class login {
 		}
 	}
 	
+	function twitter_profile() {
+		$return = '';
+		
+		$img = $this->account_data->profile_image_url_https;
+		
+		$return .= '<img src="' . $img . '" alt="You" title="You" class="left" />';
+		$return .= '<p>' . $this->account_data->screen_name . '</p>';
+		$return .= '<p><a href="/logout/">Logout</a></p>';
+		
+		return $return;
+	}
+	
+	function logout() {
+		$this->restart();
+		header('Location: /');
+		exit;
+	}
 }
