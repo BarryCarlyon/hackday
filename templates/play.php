@@ -19,9 +19,12 @@ if (@$_SESSION['tweet_sent'] && $json == 1) {
 	$tweet = 'I am playing Spotify Roulette, suggest me an artist via reply and I will listen to them! #SpotifyRoulette';
 	
 	$game = new game($tweet);
+	echo '<p>We will play the First Response. But you can listen to other response just click a link</p>';
+	echo '<p>There is a small chance we will grab a track not available in your Country</p>';
 	if ($game->setup($tweet)) {
-		echo '<p>We will play the First Response. But you can listen to other response just click a link</p>';
-		$game->start();
+		if (!isset($_SESSION['tweet_sent'])) {
+			$game->start();
+		}
 	} else {
 		echo '<p>An Error Occured</p>';
 	}

@@ -116,7 +116,6 @@ class login {
 		$return = '';
 		
 		$img = $this->account_data->profile_image_url_https;
-		
 		$return .= '<img src="' . $img . '" alt="You" title="You" class="left" />';
 		$return .= '<div>';
 		$return .= '<p>Hi, ' . $this->account_data->screen_name . '</p>';
