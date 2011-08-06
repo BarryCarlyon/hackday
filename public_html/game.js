@@ -1,6 +1,5 @@
 
 function start_game() {
-	console.log('game start');
 	update_game();
 }
 
@@ -15,6 +14,7 @@ function update_game() {
 	jQuery.getJSON('/json/', post, function(data) {
 		for (x in data) {
 			entry = data[x];
+
 			if (run) {
 				run = 0;
 				top.location = entry['url'];
@@ -30,8 +30,10 @@ function update_game() {
 		}
 	});
 	
-	if (total_results < 20 && request_count < 60) {
+	if (total_results < 20 && request_count < 10) {
 		setTimeout('update_game()', 5000);
+	} else {
+		jQuery('#game_responses').html(jQuery('#game_responses').html() + '<br />Stopped looking for Responses');
 	}
 	request_count++;
 }

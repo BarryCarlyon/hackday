@@ -3,8 +3,9 @@
 if (@$_POST['game_start']) {
 	unset($_SESSION['tweet_sent']);
 }
+$json = isset($json) ? $json : 0;
 
-if (@$_SESSION['tweet_sent']) {
+if (@$_SESSION['tweet_sent'] && $json == 1) {
 //	print_r($_SESSION);
 	$_SESSION['game_since_id'] = $_SESSION['game_tweet_id'];
 	$game = new game();

@@ -4,6 +4,7 @@
 <p>HTTP 404 Cat Not Found</p>
 
 <img src="/images/404_cat.png" alt="Sowwy" />
+<br />
 <?php
 echo $tried;
 ?>

@@ -45,38 +45,45 @@ if ($login->is_logged_in) {
 ?>
 	</div>
 	
-	<div id="twitter_widget">
-<script type="text/javascript" src="http://widgets.twimg.com/j/2/widget.js"></script>
-<script type="text/javascript">
-new TWTR.Widget({
-  version: 2,
-  type: 'profile',
-  rpp: 4,
-  interval: 6000,
-  width: 250,
-  height: 300,
-  theme: {
-    shell: {
-      background: '#333333',
-      color: '#ffffff'
-    },
-    tweets: {
-      background: '#000000',
-      color: '#ffffff',
-      links: '#4aed05'
-    }
-  },
-  features: {
-    scrollbar: false,
-    loop: false,
-    live: false,
-    hashtags: true,
-    timestamp: true,
-    avatars: false,
-    behavior: 'all'
-  }
-}).render().setUser('SpotifyRoulette').start();
-</script>
-	</div>
+<?php
+if ($page != 'play') {
+	// the widget breaks the ajax response.....
+?>
+<div id="twitter_widget">
+	<script type="text/javascript" src="http://widgets.twimg.com/j/2/widget.js"></script>
+	<script type="text/javascript">
+	new TWTR.Widget({
+	  version: 2,
+	  type: 'profile',
+	  rpp: 4,
+	  interval: 6000,
+	  width: 250,
+	  height: 300,
+	  theme: {
+	    shell: {
+	      background: '#333333',
+	      color: '#ffffff'
+	    },
+	    tweets: {
+	      background: '#000000',
+	      color: '#ffffff',
+	      links: '#4aed05'
+	    }
+	  },
+	  features: {
+	    scrollbar: false,
+	    loop: false,
+	    live: false,
+	    hashtags: true,
+	    timestamp: true,
+	    avatars: false,
+	    behavior: 'all'
+	  }
+	}).render().setUser('SpotifyRoulette').start();
+	</script>
+</div>
+<?php	
+}
+?>
 </div>
 <div id="left_column">

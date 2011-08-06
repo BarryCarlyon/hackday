@@ -60,6 +60,7 @@ body {
 	display: block;
 	border: 0px;
 	margin: 0px auto;
+	cursor: pointer;
 }
 #twitter_widget {
 	margin: 10px 0px;
