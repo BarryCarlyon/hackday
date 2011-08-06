@@ -88,9 +88,9 @@ class game {
 						'url'		=> $result
 					);
 					$jsons[] = $data;
-					$_SESSION['game_since_id'] = $mention->id;
 				}
 			}
+			$_SESSION['game_since_id'] = $mention->id;
 		}
 		
 		echo json_encode($jsons);
