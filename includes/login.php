@@ -61,7 +61,7 @@ class login {
 			$content = $this->connection->get('account/rate_limit_status');
 			if ($content->remaining_hits) {
 				// load account data from session?
-				if ($_SESSION['account_data']) {
+				if (@$_SESSION['account_data']) {
 					$this->account_data = $_SESSION['account_data'];
 				} else {
 					$content = $this->connection->get('account/verify_credentials');
