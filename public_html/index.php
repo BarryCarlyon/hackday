@@ -21,6 +21,9 @@ if (!is_file(TEMPLATES . $page . '.php')) {
 	$page = 404;
 }
 
+// login controller
+include('login.php');
+
 include(TEMPLATES . 'common/header.php');
 include(TEMPLATES . $page . '.php');
 include(TEMPLATES . 'common/footer.php');
