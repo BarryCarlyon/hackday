@@ -1,5 +1,3 @@
-<h2>Playing Spotify Roulette</h2>
-
 <?php
 
 if (@$_POST['game_start']) {
@@ -11,6 +9,7 @@ if (@$_SESSION['tweet_sent']) {
 	$game->inprogress();
 	exit;
 } else {
+	echo '<h2>Playing Spotify Roulette</h2>';
 	// tweet not sent
 	$_SESSION['tweet_sent'] = TRUE;
 	

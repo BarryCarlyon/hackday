@@ -1,6 +1,6 @@
 <?php
 
 if ($_GET['game'] == 1) {
-	include(TEMPLATES . 'game.php');
+	include(TEMPLATES . 'play.php');
 	exit;
 }
