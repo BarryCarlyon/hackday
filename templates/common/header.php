@@ -45,3 +45,7 @@ body {
 <body>
 
 <div id="wrap">
+
+<?php
+echo run_error_message();
+?>
