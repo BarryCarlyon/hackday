@@ -31,10 +31,12 @@ body {
 	text-align: center;
 }
 
-#wrap div {
+#wrap div, fieldset {
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
+	
+	border: 1px solid #000;
 }
 
 </style>

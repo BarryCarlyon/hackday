@@ -12,19 +12,30 @@ include('twitteroauth/twitteroauth.php');
 $pages = array('home', 'login');
 $default = 'home';
 
+$tried = '';
 $page = $_GET['page'] ? $_GET['page'] : 'home';
 
+// adjust
+if (substr($page, -1, 1) == '/') {
+	$page = substr($page, 0, -1);
+}
+
+// 404 catches with matches
 if (!in_array($page, $pages)) {
+	$tried = $page;
 	$page = 404;
 }
 if (!is_file(TEMPLATES . $page . '.php')) {
+	$tried = $page;
 	$page = 404;
 }
 
-// login controller
+// load lib
+include('common.php');
 include('config.php');
 include('login.php');
 
+// instantiate
 $config = new config();
 $login = new login();
 if (@$_GET['restart']) {
