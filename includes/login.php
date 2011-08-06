@@ -50,14 +50,25 @@ class login {
 		
 		if (@$_SESSION['oauth_token'] && @$_SESSION['oauth_token_secret']) {
 			$this->connection = new TwitterOAuth($config->twitter_oauth_key, $config->twitter_oauth_secret, $_SESSION['oauth_token'], $_SESSION['oauth_token_secret']);
+			
+			if (@$_GET['debug']) {
+				$debug = $this->connection->get('account/rate_limit_status');
+				echo '<pre>';
+				print_r($debug);
+				exit;
+			}
+			
 			$content = $this->connection->get('account/verify_credentials');
 			if ($this->connection->http_code == 200) {
 				$this->account_data = $content;
 				$this->is_logged_in = TRUE;
 			} else {
+				if ($content->error) {
+					add_error_message($content->error);
+				}
 				// session is invalid
-				session_destroy();
-				session_start();
+//				session_destroy();
+//				session_start();
 			}
 		}
 	}
