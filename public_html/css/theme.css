@@ -29,7 +29,7 @@ body {
 	-moz-border-radius: 10px;
 	border-radius: 10px;
 	
-	border: 1px solid #000;
+	border: 1px solid #000000;
 }
 #left_column {
 	width: 680px;
@@ -44,9 +44,22 @@ body {
 	overflow: hidden;
 }
 
+#wrap #profile {
+	border: 0px;
+}
 #profile div {
 	float: right;
 	border: 0px;
+}
+#login_form input {
+	background: url('/images/sign_in_twitter.png') top left no-repeat;
+	width: 151px;
+	height: 0px;
+	padding-top: 24px;
+	overflow: hidden;
+	display: block;
+	border: 0px;
+	margin: 0px auto;
 }
 #twitter_widget {
 	margin: 10px 0px;

@@ -7,7 +7,7 @@ if ($login->is_logged_in) {
 } else {
 	// not logged in
 	echo '
-<form action="" method="post">
+<form action="" method="post" id="login_form">
 	<fieldset>
 		<input type="hidden" name="go_login" value="twitter" />
 		<input type="submit" value="Login with Twitter" />

@@ -19,6 +19,7 @@ if (@$_SESSION['tweet_sent']) {
 	
 	$game = new game($tweet);
 	if ($game->setup($tweet)) {
+		echo '<p>We will play the First Response. But you can listen to other response just click a link</p>';
 		$game->start();
 	} else {
 		echo '<p>An Error Occured</p>';
