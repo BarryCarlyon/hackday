@@ -76,6 +76,8 @@ echo '<div id="right_column">
 
 if ($login->is_logged_in) {
 	echo $login->twitter_profile();
+} else {
+	include(TEMPLATES . 'login.php');
 }
 
 ?>

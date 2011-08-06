@@ -3,7 +3,7 @@
 // login interface
 
 if ($login->is_logged_in) {
-	
+	echo 'You is logged in like';
 } else {
 	// not logged in
 	echo '
