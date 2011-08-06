@@ -118,7 +118,8 @@ class login {
 		$img = $this->account_data->profile_image_url_https;
 		
 		$return .= '<img src="' . $img . '" alt="You" title="You" class="left" />';
-		$return .= '<p>' . $this->account_data->screen_name . '</p>';
+		$return .= '<div>';
+		$return .= '<p>Hi, ' . $this->account_data->screen_name . '</p>';
 		
 		$game = new game();
 		if (!@$_POST['game_start']) {
@@ -126,6 +127,7 @@ class login {
 		}
 		
 		$return .= '<p><a href="/logout/">Logout</a></p>';
+		$return .= '</div>';
 		
 		return $return;
 	}

@@ -22,50 +22,7 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.15/jquery-ui.min.js"></script>
 <link rel="stylesheet" type="text/css" media="screen" href="http://jquery-ui.googlecode.com/svn/tags/latest/themes/base/jquery.ui.all.css" />
 <script type="text/javascript" src="/game.js"></script>
-
-<style type="text/css">
-html {
-	background: #FFF;
-}
-body {
-	width: 980px;
-	margin-left: auto;
-	margin-right: auto;
-}
-.center {
-	text-align: center;
-}
-
-#wrap div, fieldset {
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	
-	border: 1px solid #000;
-}
-#left_column {
-	width: 680px;
-	float: left;
-}
-#right_column {
-	width: 250px;
-	float: right;
-}
-#left_column, #right_column, #profile {
-	padding: 10px;
-	overflow: hidden;
-}
-.left {
-	float: left;
-}
-.right {
-	float: right;
-}
-p {
-	margin: 5px 3px;
-}
-
-</style>
+<link rel="stylesheet" type="text/css" media="screen" href="/css/theme.css" />
 
 </head>
 <body>
@@ -86,6 +43,40 @@ if ($login->is_logged_in) {
 }
 
 ?>
+	</div>
+	
+	<div id="twitter_widget">
+<script type="text/javascript" src="http://widgets.twimg.com/j/2/widget.js"></script>
+<script type="text/javascript">
+new TWTR.Widget({
+  version: 2,
+  type: 'profile',
+  rpp: 4,
+  interval: 6000,
+  width: 250,
+  height: 300,
+  theme: {
+    shell: {
+      background: '#333333',
+      color: '#ffffff'
+    },
+    tweets: {
+      background: '#000000',
+      color: '#ffffff',
+      links: '#4aed05'
+    }
+  },
+  features: {
+    scrollbar: false,
+    loop: false,
+    live: false,
+    hashtags: true,
+    timestamp: true,
+    avatars: false,
+    behavior: 'all'
+  }
+}).render().setUser('SpotifyRoulette').start();
+</script>
 	</div>
 </div>
 <div id="left_column">

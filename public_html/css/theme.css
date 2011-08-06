@@ -1,0 +1,71 @@
+html {
+	background: #FFF;
+	font-family: Verdana;
+}
+body {
+	width: 980px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#wrap {
+	overflow: hidden;
+}
+#footer {
+	clear: both;
+	display: block;
+	font-size: 8px;
+	text-align: right;
+	margin: 10px 0px;
+}
+#footer img {
+	float: left;
+}
+.center {
+	text-align: center;
+}
+
+#wrap div, fieldset {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	
+	border: 1px solid #000;
+}
+#left_column {
+	width: 680px;
+	float: left;
+}
+#right_column {
+	width: 250px;
+	float: right;
+}
+#left_column, #right_column, #profile {
+	padding: 10px;
+	overflow: hidden;
+}
+
+#profile div {
+	float: right;
+	border: 0px;
+}
+#twitter_widget {
+	margin: 10px 0px;
+	border: 0px;
+}
+
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+
+p {
+	margin: 5px 3px;
+}
+a:link, a:active, a:visited, a:hover {
+	color: #75B700;
+}
+fieldset {
+	border: 0px;
+}
