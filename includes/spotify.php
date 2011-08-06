@@ -59,17 +59,17 @@ class Spotify {
 	private function error($code) {
 		$message = '';
 		switch ($code) {
-			400:
+			case 400:
 				$message = 'Bad Request';
-			403:
+			case 403:
 				$message = $message ? $message : 'Rate Limit';
-			404:
+			case 404:
 				$message = $message ? $message : 'Not Found';
-			406:
+			case 406:
 				$message = $message ? $message : 'Bad Format';
-			500:
+			case 500:
 				$message = $message ? $message : 'Fuuuuu';
-			503:
+			case 503:
 				$message = $message ? $message : 'Is Down';
 			default:
 				$message = $message ? $message : 'Unknown';
