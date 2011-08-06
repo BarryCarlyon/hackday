@@ -21,7 +21,9 @@ if (!is_file(TEMPLATES . $page . '.php')) {
 	$page = 404;
 }
 
+include(TEMPLATES . 'common/header.php');
 include(TEMPLATES . $page . '.php');
+include(TEMPLATES . 'common/footer.php');
 
 /*
 
