@@ -13,15 +13,18 @@ class login {
 		// detcech call backs
 		// twitters
 		if (@$_POST['go_login'] == 'twitter') {
-			$_SESSION['go_login'] == 'twitter';
+			$_SESSION['go_login'] = 'twitter';
 			$this->twitter_login();
 		}
 		if (@$_GET['oauth_token'] && @$_GET['oauth_verifier'] && @$_SESSION['go_login'] == 'twitter') {
 			// return from twitter
 			$token = $_GET['oauth_token'];
-			$verify = $_GET['oauth_verifier']
+			$verify = $_GET['oauth_verifier'];
+			
+			// we have keys
+			
 		} else if (@$_SESSION['go_login'] == 'twitter') {
-			add_error_message('An Error Occured');
+			add_error_message('An Error Occurred');
 		}
 	}
 	

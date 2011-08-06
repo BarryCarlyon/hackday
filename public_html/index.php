@@ -35,14 +35,21 @@ include('common.php');
 include('config.php');
 include('login.php');
 
+include('database.php');
+$log = new log();
+
 // instantiate
 $config = new config();
+
+$database = new db($config->database);
+
 $login = new login();
 if (@$_GET['restart']) {
 	$login->restart();
 	header('Location: /');
 	exit;
 }
+print_r($_SESSION);
 
 include(TEMPLATES . 'common/header.php');
 include(TEMPLATES . $page . '.php');
