@@ -27,6 +27,8 @@ class Spotify {
 		if ($this->parameters) {
 			$url .= '?' . http_build_query($this->parameters);
 		}
+		$this->parameters = array();
+		$this->url = $url;
 		
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
@@ -76,7 +78,7 @@ class Spotify {
 				$message = $message ? $message : 'Unknown';
 		}
 		
-		$str = 'Error Code: ' . $code . ': ' . $message;
+		$str = 'Error Code: ' . $code . ': ' . $message . ': ' . $this->url;
 		trigger_error($str, E_USER_WARNING);
 		$this->error = $str;
 		$this->error_code = $code;
@@ -89,6 +91,28 @@ class Spotify {
 		$this->method = 'artist';
 		
 		$this->addParameter('q', $artist);
+		
+		return $this->run();
+	}
+	public function lookup_artist($artisturi, $extras = '') {
+		$this->service = 'lookup';
+		$this->method = '';
+		
+		$this->addParameter('uri', $artisturi);
+		if ($extras) {
+			$this->addParameter('extras', $extras);
+		}
+		
+		return $this->run();
+	}
+	public function lookup_album($albumruri, $extras = '') {
+		$this->service = 'lookup';
+		$this->method = '';
+		
+		$this->addParameter('uri', $albumruri);
+		if ($extras) {
+			$this->addParameter('extras', $extras);
+		}
 		
 		return $this->run();
 	}

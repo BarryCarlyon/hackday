@@ -6,10 +6,14 @@ function start_game() {
 
 var run = 1;
 var total_results = 0;
+var mid = '';
+var post = 'game=1';
+var lastid = 0;
 
 function update_game() {
 	console.log('update game');
-	jQuery.getJSON('/json/', 'game=1', function(data) {
+	
+	jQuery.getJSON('/json/', post, function(data) {
 		console.log('woo');
 		console.log(data);
 
@@ -23,6 +27,10 @@ function update_game() {
 
 			jQuery('#game_responses').html(jQuery('#game_responses').html() + '<br />' + entry['user'] + ' suggested <a href="' + entry['url'] + '">' + entry['artist'] + '</a>');
 			total_results++;
+			
+			if (entry['mid'] > lastid) {
+				post = 'game=1&mid=' + entry['mid'];
+			}
 		}
 	});
 	

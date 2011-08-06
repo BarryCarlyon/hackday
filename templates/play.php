@@ -5,6 +5,8 @@ if (@$_POST['game_start']) {
 }
 
 if (@$_SESSION['tweet_sent']) {
+//	print_r($_SESSION);
+	$_SESSION['game_since_id'] = $_SESSION['game_tweet_id'];
 	$game = new game();
 	$game->inprogress();
 	exit;

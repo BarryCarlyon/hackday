@@ -37,20 +37,21 @@ class game {
 	}
 	
 	function start() {
-//		$result = $this->connection->post('statuses/update', array('status' => $this->tweet));
-//		if (isset($result->error)) {
-//			echo '<p>An Error Occured: ' . $result->error . '</p>';
-//			return FALSE;
-//		}
-//		$_SESSION['game_tweet_id'] = $result->id;
-		$_SESSION['game_tweet_id'] = 99918985038008320;
+		$result = $this->connection->post('statuses/update', array('status' => $this->tweet));
+		if (isset($result->error)) {
+			echo '<p>An Error Occured: ' . $result->error . '</p>';
+			return FALSE;
+		}
+		$_SESSION['game_tweet_id'] = $result->id;
+//		$_SESSION['game_tweet_id'] = 99918985038008320;
 		return TRUE;
 	}
 	
 	function inprogress() {
 		// get responses
+//		print_r($_SESSION);
 		$target_id = $_SESSION['game_tweet_id'];
-		$since_id = isset($_SESSION['game_since_id']) ? $_SESSION['game_since_id'] : $_SESSION['game_tweet_id'];
+		$since_id = isset($_REQUEST['mid']) ? $_REQUEST['mid'] : $_SESSION['game_tweet_id'];
 		$reverse_mentions = $this->connection->get('statuses/mentions', array('since_id' => $since_id));
 		// meed to reverse
 		// and update since_id
@@ -63,7 +64,7 @@ class game {
 			
 			$response_to = $mention->in_reply_to_status_id;
 			$from = $mention->user->screen_name;
-
+			
 			if ($response_to == $target_id) {
 				// a response
 
@@ -85,12 +86,14 @@ class game {
 					$data = array(
 						'user'		=> $from,
 						'artist'	=> $test,
-						'url'		=> $result
+						'url'		=> $result,
+						'mid'		=> $mention->id
 					);
 					$jsons[] = $data;
 				}
 			}
-			$_SESSION['game_since_id'] = $mention->id;
+//			$_SESSION['game_since_id'] = $mention->id;
+//			print_r($_SESSION);
 		}
 		
 		echo json_encode($jsons);
@@ -99,13 +102,27 @@ class game {
 	function end($artist) {
 		// valid response
 		// get a playlist
-		
 		$spotify = new Spotify();
 
 		$data = $spotify->search_artist($artist);
 
-		if ($result_1 = $data->artists[0]) {
-			return $result_1->href;
+		if ($result_1 = @$data->artists[0]) {
+			// artist found
+			// album
+			$albums = $spotify->lookup_artist($result_1->href, 'album');
+			$albums = $albums->artist->albums;
+			shuffle($albums);
+			$album = array_pop($albums);
+			$albumuri = $album->album->href;
+			
+			// track
+			$tracks = $spotify->lookup_album($albumuri, 'track');
+			$tracks = $tracks->album->tracks;
+			shuffle($tracks);
+			$track = array_pop($tracks);
+			$trackuri = $track->href;
+			return $trackuri;
+//			return $result_1->href;
 		} else {
 			return FALSE;
 		}
