@@ -58,13 +58,28 @@ class login {
 				exit;
 			}
 			
-			$content = $this->connection->get('account/verify_credentials');
-			if ($this->connection->http_code == 200) {
-				$this->account_data = $content;
+			$content = $this->connection->get('account/rate_limit_status');
+			if ($content->remaining_hits) {
+				// load account data from session?
+				if ($_SESSION['account_data']) {
+					$this->account_data = $_SESSION['account_data'];
+				} else {
+					$content = $this->connection->get('account/verify_credentials');
+					if ($this->connection->http_code == 200) {
+						$this->account_data = $content;
+						$_SESSION['account_data'] = $content;
+					} else {
+						if ($content->error) {
+							add_error_message($content->error);
+							return;
+						}
+					}
+				}
 				$this->is_logged_in = TRUE;
 			} else {
 				if ($content->error) {
 					add_error_message($content->error);
+					return;
 				}
 				// session is invalid
 //				session_destroy();
