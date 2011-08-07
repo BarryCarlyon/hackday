@@ -37,7 +37,7 @@ function update_game() {
 	if (total_results < 20 && request_count < 10) {
 		setTimeout('update_game()', 5000);
 	} else {
-		jQuery('#game_responses').html(jQuery('#game_responses').html() + '<br />Stopped looking for Responses');
+		jQuery('#game_responses').html(jQuery('#game_responses').html() + '<br />Stopped looking for Responses<br />We Suggest you Listen to <a href="spotify:track:6JEK0CvvjDjjMUBFoXShNZ">this</a>');
 	}
 	request_count++;
 }
