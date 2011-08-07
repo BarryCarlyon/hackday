@@ -19,12 +19,32 @@ if (@$_SESSION['tweet_sent'] && $json == 1) {
 	$game = new game($tweet);
 	echo '<p>We will play the First Response. But you can listen to other response just click a link</p>';
 	echo '<p>There is a small chance we will grab a track not available in your Country</p>';
+
 	if ($game->setup($tweet)) {
 		if (!isset($_SESSION['tweet_sent'])) {
 			$game->start();
 			$_SESSION['tweet_sent'] = TRUE;
+			
+			//
+			global $config;
+			include('database.php');
+			$log = new log();
+			$db = new db($config->database);
+			
+			$avatar = $_SESSION['account_data']->profile_image_url_https;
+			$query = 'SELECT ref_id FROM twitter_recent WHERE screen_name = \'' . $_SESSION['twitter_screen_name'] . '\'';
+			$result = $db->get_data($query);
+			
+			if ($db->total_rows) {
+				$row = $db->fetch_row($result);
+				
+				$query = 'UPDATE twitter_recent SET profile_image = \'' . $avatar . '\', tos = NOW() WHERE ref_id = ' . $row['ref_id'];
+			} else {
+				$query = 'INSERT INTO twitter_resent(screen_name, profile_image) VALUES (\'' . $_SESSION['twitter_screen_name'] . '\', \'' . $avatar . '\')';
+			}
+			$db->query($query);
 		}
 	} else {
-		echo '<p>An Error Occured</p>';
+		echo '<p>An Error Occured. As a Result, you have Lost the Game!!!</p>';
 	}
 }
