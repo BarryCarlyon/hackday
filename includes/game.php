@@ -197,7 +197,7 @@ class game {
 			$album = array_pop($albums);
 			
 			if (@$_SESSION['country']) {
-				$territories = strtolower($album->availability->territories);
+				$territories = strtolower($album->album->availability->territories);
 				$territories = explode(' ', $territories);
 				$albumuri = FALSE;
 				if (in_array(strtolower($_SESSION['country'], $territories))) {
@@ -208,7 +208,7 @@ class game {
 					shuffle($albums);
 					$album = array_pop($albums);
 					
-					$territories = strtolower($album->availability->territories);
+					$territories = strtolower($album->album->availability->territories);
 					$territories = explode(' ', $territories);
 					
 					if (in_array(strtolower($_SESSION['country']), $territories)) {
