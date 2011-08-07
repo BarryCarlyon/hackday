@@ -4,7 +4,7 @@
 <div id="listened">
 <?php
 
-$query = 'SELECT *, UNIX_TIMESTAMP(tos) AS unixtos FROM twitter_recent ORDER BY UNIX_TIMESTAMP(tos) DESC LIMIT 5';
+$query = 'SELECT *, UNIX_TIMESTAMP(tos) AS unixtos FROM twitter_recent WHERE played != \'\' ORDER BY UNIX_TIMESTAMP(tos) DESC LIMIT 5';
 $data = $db->get_data($query);
 
 while ($row = $db->fetch_row($data)) {
