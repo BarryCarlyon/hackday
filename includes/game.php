@@ -204,14 +204,14 @@ class game {
 					$albumuri = $album->album->href;
 				}
 				
-				while (!in_array(strtolower($_SESSION['country'], $territories)) && count($albums)) {
+				while (!in_array(strtolower($_SESSION['country']), $territories) && count($albums)) {
 					shuffle($albums);
 					$album = array_pop($albums);
 					
 					$territories = strtolower($album->availability->territories);
 					$territories = explode(' ', $territories);
 					
-					if (in_array(strtolower($_SESSION['country'], $territories))) {
+					if (in_array(strtolower($_SESSION['country']), $territories)) {
 						$albumuri = $album->album->href;
 					}
 				}
