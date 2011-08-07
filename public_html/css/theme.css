@@ -24,12 +24,12 @@ body {
 	text-align: center;
 }
 
-#wrap, #nav, #listened {
+#wrap, #nav {
 	display: block;
 	clear: both;
 	overflow: hidden;
 }
-#nav, #listened {
+#nav {
 	margin: 5px 0px;
 }
 #nav ul li {
@@ -37,7 +37,7 @@ body {
 	display: inline;
 }
 
-#wrap div, #playlistcontent {
+#wrap div, #playlistcontent, #listened {
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
@@ -47,12 +47,14 @@ body {
 #left_column {
 	width: 680px;
 	float: left;
+	overflow: hidden;
 }
 #right_column {
 	width: 250px;
 	float: right;
+	overflow: hidden;
 }
-#left_column, #right_column, #profile, #listened {
+#left_column, #right_column, #profile {
 	padding: 10px;
 	overflow: hidden;
 }
@@ -98,8 +100,14 @@ p {
 a:link, a:active, a:visited, a:hover {
 	color: #75B700;
 }
-fieldset, #listened, #listened div {
+fieldset {
 	border: 0px;
+}
+
+#listened {
+	clear: both;
+	margin: 5px  0px;
+	padding: 5px;
 }
 
 #game_responses {

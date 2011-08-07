@@ -1,9 +1,34 @@
 	</div>
 </div>
 
+<div id="listened">
 <?php
-//$log->outputlog();
+
+global $config;
+include('database.php');
+$log = new log();
+$db = new db($config->database);
+
+$query = 'SELECT *, UNIX_TIMESTAMP(tos) AS unixtos FROM twitter_recent ORDER BY UNIX_TIMESTAMP(tos) DESC LIMIT 5';
+$data = $db->get_data($query);
+
+while ($row = $db->fetch_row($data)) {
+	echo '<div>';
+	echo '<img src="' . $row['profile_image'] . '" alt="' . $row['screen_name'] . '" title="' . $row['screen_name'] . '" />';
+	echo $row['screen_name'] . ' ';
+	
+	if ($row['unixtos'] < (time() - 2500)) {
+		echo 'is';
+	} else {
+		echo 'was';
+	}
+	
+	echo ' listening to ' . $row['played'] . ' suggested by ' . $row['refer'];
+	echo '</div>';
+}
+
 ?>
+</div>
 
 <div id="footer">
 	<a href="http://spotify.com">
