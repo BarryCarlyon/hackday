@@ -36,7 +36,7 @@ function update_game() {
 		}
 	});
 	
-	if (total_results < 20 && request_count < 5) {
+	if (total_results < 20 && request_count < 60) {
 		setTimeout('update_game()', 5000);
 	} else {
 		if (run) {
