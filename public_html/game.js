@@ -57,7 +57,7 @@ jQuery(document).ready(function() {
 				modal: true,
 				resizable: true,
 				title: 'Playlist',
-				width: 500,
+				width: '750px',
 				close: function(event, ui) {
 					jQuery('.playlistdialog').remove();
 				}

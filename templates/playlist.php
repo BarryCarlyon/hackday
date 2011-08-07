@@ -18,6 +18,7 @@ if (@$json == 1) {
 		$album = array_pop($albums);
 		
 		$albumuri = $album->album->href;
+		$albumname = $album->album->name;
 		
 		// get album
 		$tracks = $spotify->lookup_album($albumuri, 'track');
@@ -27,7 +28,7 @@ if (@$json == 1) {
 
 		$trackuri = $track->href;
 		
-		$pltracks[$trackuri] = $track->name;
+		$pltracks[$trackuri] = $track->name . ' from ' . $albumname;
 		
 		if (!count($albums)) {
 			// reset
