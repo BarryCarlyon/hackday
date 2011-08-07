@@ -27,9 +27,8 @@ class game {
 			return FALSE;
 		}
 		if (!$tweet) {
-			$tweet = 'I am playing Spotify Roulette, suggest me an artist via reply and I will listen to them! #SpotifyRoulette';
+			$tweet = 'I am playing #SpotifyRoulette, suggest me an artist via reply and I will listen to them!';
 		}
-//		$tweet = 'Testing my app ' . time();
 		$this->tweet = $tweet;
 		
 		echo '<div id="game_responses"><script type="text/javascript">start_game();</script>Waiting for Responses...</div>';
@@ -43,7 +42,6 @@ class game {
 			return FALSE;
 		}
 		$_SESSION['game_tweet_id'] = $result->id;
-//		$_SESSION['game_tweet_id'] = 99918985038008320;
 		return TRUE;
 	}
 	
