@@ -38,16 +38,12 @@ class game {
 	}
 	
 	function start() {
-		$result = $this->connection->post('status/update', array('status' => $this->tweet));
+		$result = $this->connection->post('statuses/update', array('status' => $this->tweet));
 		if (isset($result->error)) {
 			echo '<p>An Error Occured: ' . $result->error . '</p>';
 			return FALSE;
 		}
 		if (!$result->id) {
-			echo '<pre>';
-			print_r($this->connection);
-			print_r($result);
-			echo '</pre>';
 			return FALSE;
 		}
 		$_SESSION['game_tweet_id'] = $result->id;
