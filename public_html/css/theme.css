@@ -24,6 +24,18 @@ body {
 	text-align: center;
 }
 
+#wrap, #nav {
+	display: block;
+	clear: both;
+}
+#nav {
+	margin: 5px 0px;
+}
+#nav ul li {
+	float: left;
+	display: inline;
+}
+
 #wrap div, fieldset {
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;

@@ -27,6 +27,21 @@
 </head>
 <body>
 
+<div id="nav">
+<?php
+
+if ($page != 'home') {
+	// breadcrumbs
+	echo '<ul>';
+	echo '<li><a href="/">Home</a></li>';
+	echo '<li>&gt;</li>';
+	echo '<li><a href="/' . $page . '/">' . ucwords($page) . '</a></li>';
+	echo '</ul>';
+}
+
+?>
+</div>
+
 <div id="wrap">
 
 <?php
