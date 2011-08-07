@@ -15,8 +15,10 @@ class game {
 	
 	function form() {
 		return '
-<form action="/play/" method="post"><fieldset>
+<form action="/play/" method="post" id="spin_form"><fieldset>
 	<input type="hidden" name="game_start" value="1" />
+	<label for="custom_tweet">Custom Tweet: <input type="checkbox" name="custom_tweet" id="custom_tweet" /></label>
+	<input type="text" name="custom_tweet_text" id="custom_tweet_text" style="display: none;" />
 	<input type="submit" value="Play Spotify Roulette" id="play_spotify_roulette" />
 </fieldset></form>
 ';
@@ -36,9 +38,16 @@ class game {
 	}
 	
 	function start() {
-		$result = $this->connection->post('statuses/update', array('status' => $this->tweet));
+		$result = $this->connection->post('status/update', array('status' => $this->tweet));
 		if (isset($result->error)) {
 			echo '<p>An Error Occured: ' . $result->error . '</p>';
+			return FALSE;
+		}
+		if (!$result->id) {
+			echo '<pre>';
+			print_r($this->connection);
+			print_r($result);
+			echo '</pre>';
 			return FALSE;
 		}
 		$_SESSION['game_tweet_id'] = $result->id;

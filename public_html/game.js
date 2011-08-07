@@ -84,4 +84,20 @@ jQuery(document).ready(function() {
 		extra = 'playing=' + escape(jQuery(this).attr('artist')) + '&refer=' + jQuery(this).attr('suggest');
 		jQuery.get('/json/', extra);
 	});
+	
+	jQuery('#custom_tweet').click(function() {
+		jQuery('<div><textarea id="the_custom_tweet" style="width: 300px; height: 200px;">I am playing #SpotifyRoulette, suggest me an artist via reply and I will listen to them!</textarea><br /><input type="submit" onclick="custom_tweet()" value="Submit" />').dialog({
+			draggable: false,
+			modal: true,
+			resizable: true,
+			title: 'Custom Tweet',
+			width: '350px'
+		});
+	});
 });
+
+function custom_tweet() {
+	tweet = jQuery('#the_custom_tweet').val();
+	jQuery('#custom_tweet_text').val(tweet);
+	jQuery('#spin_form').submit();
+}
