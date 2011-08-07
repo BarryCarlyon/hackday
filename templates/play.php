@@ -14,7 +14,7 @@ if (@$_SESSION['tweet_sent'] && $json == 1) {
 } else {
 	echo '<h2>Playing Spotify Roulette</h2>';
 	// tweet not sent
-	$tweet = 'I am playing Spotify Roulette, suggest me an artist via reply and I will listen to them! #SpotifyRoulette';
+	$tweet = 'I am playing #SpotifyRoulette, suggest me an artist via reply and I will listen to them!';
 	
 	$game = new game($tweet);
 	echo '<p>We will play the First Response. But you can listen to other response just click a link</p>';
