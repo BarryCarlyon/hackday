@@ -4,11 +4,6 @@
 <div id="listened">
 <?php
 
-global $config;
-include('database.php');
-$log = new log();
-$db = new db($config->database);
-
 $query = 'SELECT *, UNIX_TIMESTAMP(tos) AS unixtos FROM twitter_recent ORDER BY UNIX_TIMESTAMP(tos) DESC LIMIT 5';
 $data = $db->get_data($query);
 

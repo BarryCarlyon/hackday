@@ -4,6 +4,7 @@ set_include_path(
 	get_include_path() . PATH_SEPARATOR .
 	dirname(__FILE__) . '/../includes/'
 );
+define('INCLUDES', dirname(__FILE__) . '/../includes/');
 define('TEMPLATES', dirname(__FILE__) . '/../templates/');
 
 include('spotify.php');
@@ -38,13 +39,13 @@ include('config.php');
 include('login.php');
 include('game.php');
 
-//include('database.php');
-//$log = new log();
+include('database.php');
+$log = new log();
 
 // instantiate
 $config = new config();
 
-//$db = new db($config->database);
+$db = new db($config->database);
 
 $login = new login();
 if (@$_GET['restart']) {
@@ -52,7 +53,7 @@ if (@$_GET['restart']) {
 	header('Location: /');
 	exit;
 }
-//print_r($_SESSION);
+print_r($_SESSION);
 
 if ($page != 'json') {
 	include(TEMPLATES . 'common/header.php');

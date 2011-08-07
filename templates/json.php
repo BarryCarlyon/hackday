@@ -16,11 +16,6 @@ if ($artist = @$_GET['playlist']) {
 }
 
 if (@$_GET['playing'] && @$_GET['refer']) {
-	global $config;
-	include('database.php');
-	$log = new log();
-	$db = new db($config->database);
-	
 	$playing = urldecode($_GET['playing']);
 	
 	$avatar = $_SESSION['account_data']->profile_image_url_https;

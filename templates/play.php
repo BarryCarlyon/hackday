@@ -26,11 +26,6 @@ if (@$_SESSION['tweet_sent'] && $json == 1) {
 			$_SESSION['tweet_sent'] = TRUE;
 			
 			//
-			global $config;
-			include('database.php');
-			$log = new log();
-			$db = new db($config->database);
-			
 			$avatar = $_SESSION['account_data']->profile_image_url_https;
 			$query = 'SELECT ref_id FROM twitter_recent WHERE screen_name = \'' . $_SESSION['twitter_screen_name'] . '\'';
 			$result = $db->get_data($query);
@@ -42,7 +37,7 @@ if (@$_SESSION['tweet_sent'] && $json == 1) {
 			} else {
 				$query = 'INSERT INTO twitter_recent(screen_name, profile_image) VALUES (\'' . $_SESSION['twitter_screen_name'] . '\', \'' . $avatar . '\')';
 			}
-			$db->get_query($query);
+			$db->get_data($query);
 		}
 	} else {
 		echo '<p>An Error Occured. As a Result, you have Lost the Game!!!</p>';

@@ -37,6 +37,26 @@ class login {
 				$_SESSION['twitter_user_id'] = $access_token['user_id'];
 				$_SESSION['twitter_screen_name'] = $access_token['screen_name'];
 				
+				// make a bash for the country
+				include('geo/geoip.inc');
+				$gi = geoip_open(INCLUDES . 'geo/GeoIP.dat', GEOIP_STANDARD);
+				$country = geoip_country_code_by_addr($gi, $_SERVER['REMOTE_ADDR']);
+				
+				if (!$country) {
+					$ch = curl_init();
+					curl_setopt($ch, CURLOPT_HEADER, 0);
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+					curl_setopt($ch, CURLOPT_URL, 'http://www.geoplugin.net/php.gp?ip=' . $_SERVER['REMOTE_ADDR']);
+					$data = curl_exec($ch);
+					curl_close($ch);
+
+					$country_data = unserialize($data);
+					$country = isset($country_data['geoplugin_countryCode']) ? $country_data['geoplugin_countryCode'] : '';
+				}
+				if ($country) {
+					$_SESSION['country'] = $country;
+				}
+				
 				$this->is_logged_in = TRUE;
 				
 				header('Location: /');

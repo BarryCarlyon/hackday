@@ -195,14 +195,58 @@ class game {
 			
 			shuffle($albums);
 			$album = array_pop($albums);
-			$albumuri = $album->album->href;
+			
+			if (@$_SESSION['country']) {
+				$territories = strtolower($album->availability->territories);
+				$territories = explode(' ', $territories);
+				$albumuri = FALSE;
+				if (in_array(strtolower($_SESSION['country'], $territories))) {
+					$albumuri = $album->album->href;
+				}
+				
+				while (!in_array(strtolower($_SESSION['country'], $territories)) && count($albums)) {
+					shuffle($albums);
+					$album = array_pop($albums);
+					
+					$territories = strtolower($album->availability->territories);
+					$territories = explode(' ', $territories);
+					
+					if (in_array(strtolower($_SESSION['country'], $territories))) {
+						$albumuri = $album->album->href;
+					}
+				}
+				
+				if (!$albumuri) {
+					return FALSE;
+				}
+			} else {
+				// hmm
+				$albumuri = $album->album->href;
+			}
+			
 			
 			// track
 			$tracks = $spotify->lookup_album($albumuri, 'track');
 			$tracks = $tracks->album->tracks;
+			
 			shuffle($tracks);
 			$track = array_pop($tracks);
-			$trackuri = $track->href;
+			$trackuri = FALSE;
+			if ($track->available) {
+				$trackuri = $track->href;
+			}
+
+			while (!$track->available && count($tracks)) {
+				shuffle($tracks);
+				$track = array_pop($tracks);
+				if ($track->available) {
+					$trackuri = $track->href;
+				}
+			}
+			
+			if (!$trackuri) {
+				return FALSE;
+			}
 			
 			return array('trackuri' => $trackuri, 'artisturi' => $artist_id);
 //			return $result_1->href;
