@@ -25,10 +25,11 @@ function update_game() {
 			}
 
 			if (jQuery('#game_responses').html()) {
-				jQuery('#game_responses').html(jQuery('#game_responses').html() + '<br />' + entry['string']);
+//				jQuery('#game_responses').html(jQuery('#game_responses').html() + '<br />' + entry['string']);
 			} else {
-				jQuery('#game_responses').html(entry['string']);
+//				jQuery('#game_responses').html(entry['string']);
 			}
+			jQuery('<p>' + entry['string'] + '</p>').hide().appendTo('#game_responses').slideDown();
 			total_results++;
 			
 			if (entry['mid'] > lastid) {

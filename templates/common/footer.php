@@ -1,29 +1,34 @@
 	</div>
 </div>
 
-<div id="listened">
+<div id="listened"></div>
 <?php
 
 $query = 'SELECT *, UNIX_TIMESTAMP(tos) AS unixtos FROM twitter_recent WHERE played != \'\' ORDER BY UNIX_TIMESTAMP(tos) DESC LIMIT 5';
 $data = $db->get_data($query);
 
 while ($row = $db->fetch_row($data)) {
-	echo '<div>';
-	echo '<img src="' . $row['profile_image'] . '" alt="' . $row['screen_name'] . '" title="' . $row['screen_name'] . '" />';
-	echo $row['screen_name'] . ' ';
+	$line = '<div>';
+	$line .= '<img src="' . $row['profile_image'] . '" alt="' . $row['screen_name'] . '" title="' . $row['screen_name'] . '" />';
+	$line .= $row['screen_name'] . ' ';
 	
 	if ($row['unixtos'] > (time() - 300)) {
-		echo 'is';
+		$line .= 'is';
 	} else {
-		echo 'was';
+		$line .= 'was';
 	}
 	
-	echo ' listening to ' . $row['played'] . ' suggested by ' . $row['refer'];
-	echo '</div>';
+	$line .= ' listening to ' . $row['played'] . ' suggested by ' . $row['refer'];
+	$line .= '</div>';
+	
+	echo '
+<script type="text/javascript">
+	jQuery(\'' . $line . '\').hide().prependTo(\'#listened\').slideDown();
+</script>
+';
 }
 
 ?>
-</div>
 
 <div id="footer">
 	<a href="http://spotify.com">
