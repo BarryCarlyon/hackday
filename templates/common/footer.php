@@ -1,7 +1,7 @@
 	</div>
 </div>
 
-<div id="listened"></div>
+<div id="listened">
 <?php
 
 $query = 'SELECT *, UNIX_TIMESTAMP(tos) AS unixtos FROM twitter_recent WHERE played != \'\' ORDER BY UNIX_TIMESTAMP(tos) DESC LIMIT 5';
@@ -32,6 +32,7 @@ while ($row = $db->fetch_row($data)) {
 }
 
 ?>
+</div>
 
 <div id="footer">
 	<a href="http://spotify.com">
