@@ -53,7 +53,7 @@ if (@$_GET['restart']) {
 	header('Location: /');
 	exit;
 }
-print_r($_SESSION);
+//print_r($_SESSION);
 
 if ($page != 'json') {
 	include(TEMPLATES . 'common/header.php');

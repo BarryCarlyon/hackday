@@ -10,6 +10,7 @@ if (@$json == 1) {
 	// get some albums
 	$albums = $spotify->lookup_artist($artist, 'album');
 	$albums = $albums->artist->albums;
+	$artistname = $albums[0]->album->name;
 	
 	shuffle($albums);
 	$full = $albums;
@@ -28,7 +29,10 @@ if (@$json == 1) {
 
 		$trackuri = $track->href;
 		
-		$pltracks[$trackuri] = $track->name . ' from ' . $albumname;
+		$pltracks[$trackuri] = array(
+			'name'		=> $track->name,
+			'album'		=> $albumname
+		);
 		
 		if (!count($albums)) {
 			// reset
@@ -43,7 +47,8 @@ if (@$json == 1) {
 	echo '<ul>';
 	foreach ($pltracks as $uri => $track) {
 		echo '<li>';
-		echo '<a href="' . $uri . '">' . $track . '</a>';
+//		echo '<a href="' . $uri . '" class="playartist" artist="' . $artistname . '" suggest="' . $from . '">' . $track->name . ' from ' . $track->album . '</a>';
+		echo '<a href="' . $uri . '">' . $track['name'] . ' from ' . $track['album'] . '</a>';
 		echo '</li>';
 		$uris .= $uri . ' ';
 	}

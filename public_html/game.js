@@ -57,6 +57,10 @@ jQuery(document).ready(function() {
 	jQuery('.getplaylist').live('click', function() {
 		artist = jQuery(this).attr('artisturi');
 		
+		html = jQuery(this).html();
+		jQuery(this).html('Loading...');
+		target = this;
+		
 		jQuery.get('/json/', 'playlist=' + artist, function(data) {
 			jQuery('<div class="playlistdialog">' + data + '</div>').dialog({
 				draggable: false,
@@ -68,6 +72,7 @@ jQuery(document).ready(function() {
 					jQuery('.playlistdialog').remove();
 				}
 			});
+			jQuery(target).html(html);
 		});
 	});
 	

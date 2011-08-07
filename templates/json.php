@@ -15,6 +15,10 @@ if ($artist = @$_GET['playlist']) {
 	exit;
 }
 
+if (@$_GET['playing'] == 'Rick' && !@$_GET['refer']) {
+	$_GET['playing'] = 'Rickrolled';
+	$_GET['refer'] = 'Rick Astley';
+}
 if (@$_GET['playing'] && @$_GET['refer']) {
 	$playing = urldecode($_GET['playing']);
 	
