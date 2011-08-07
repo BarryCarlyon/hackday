@@ -77,8 +77,11 @@ class login {
 				}
 				$this->is_logged_in = TRUE;
 			} else {
-				if ($content->error) {
+				if (@$content->error) {
 					add_error_message($content->error);
+					return;
+				} else {
+					add_error_message('Out of API Hits');
 					return;
 				}
 				// session is invalid

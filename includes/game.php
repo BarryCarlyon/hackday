@@ -23,7 +23,7 @@ class game {
 	}
 	
 	function setup($tweet = '') {
-		if (!$this->connection) {
+		if (!@$this->connection) {
 			return FALSE;
 		}
 		if (!$tweet) {
@@ -88,7 +88,7 @@ class game {
 						'user'		=> $from,
 						'artist'	=> $test,
 						'url'		=> $result,
-						'mid'		=> $mention->id
+						'mid'		=> $mention->id_str
 					);
 					$jsons[] = $data;
 				}
