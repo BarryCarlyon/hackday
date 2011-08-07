@@ -17,7 +17,7 @@ class game {
 		return '
 <form action="/play/" method="post"><fieldset>
 	<input type="hidden" name="game_start" value="1" />
-	<input type="submit" value="Play Spotify Roulette" />
+	<input type="submit" value="Play Spotify Roulette" id="play_spotify_roulette" />
 </fieldset></form>
 ';
 	}

@@ -63,7 +63,8 @@ body {
 	float: right;
 	border: 0px;
 }
-#login_form input {
+
+#login_form input, #play_spotify_roulette {
 	background: url('/images/sign_in_twitter.png') top left no-repeat;
 	width: 151px;
 	height: 0px;
@@ -74,6 +75,10 @@ body {
 	margin: 0px auto;
 	cursor: pointer;
 }
+#play_spotify_roulette {
+	background: url('/images/spin.png') top left no-repeat;
+}
+
 #twitter_widget {
 	margin: 10px 0px;
 	border: 0px;
