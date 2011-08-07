@@ -24,7 +24,7 @@ body {
 	text-align: center;
 }
 
-#wrap, #nav {
+#wrap, #nav, #listened {
 	display: block;
 	clear: both;
 	overflow: hidden;
@@ -52,7 +52,7 @@ body {
 	width: 250px;
 	float: right;
 }
-#left_column, #right_column, #profile {
+#left_column, #right_column, #profile, #listened {
 	padding: 10px;
 	overflow: hidden;
 }
@@ -98,7 +98,7 @@ p {
 a:link, a:active, a:visited, a:hover {
 	color: #75B700;
 }
-fieldset {
+fieldset, #listened, #listened div {
 	border: 0px;
 }
 
