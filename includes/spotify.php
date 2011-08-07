@@ -120,4 +120,12 @@ class Spotify {
 		
 		return $this->run();
 	}
+	public function lookup_track($trackuri, $null = '') {
+		$this->service = 'lookup';
+		$this->method = '';
+		
+		$this->addParameter('uri', $trackuri);
+		
+		return $this->run();
+	}
 }

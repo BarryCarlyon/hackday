@@ -52,7 +52,7 @@ class game {
 //		print_r($_SESSION);
 		$target_id = $_SESSION['game_tweet_id'];
 		$since_id = isset($_REQUEST['mid']) ? $_REQUEST['mid'] : $_SESSION['game_tweet_id'];
-		$reverse_mentions = $this->connection->get('statuses/mentions', array('since_id' => $since_id, 'include_rts' => '1'));
+		$reverse_mentions = $this->connection->get('statuses/mentions', array('since_id' => $since_id, 'include_rts' => '1', 'include_entities' => '1'));
 		// meed to reverse
 		// and update since_id
 		
@@ -61,27 +61,86 @@ class game {
 		
 		foreach ($mentions as $mention) {
 			$tweet = $mention->text;
+//			echo $tweet . '<br />';
+			
+//			print_r($mention);
 			
 			$response_to = $mention->in_reply_to_status_id;
 			$from = $mention->user->screen_name;
 			
 //			if ($response_to == $target_id) {
 				// a response
+				
+				$splink = FALSE;
+				// check for open.spotify.com
+				if ($mention->entities->urls) {
+					foreach ($mention->entities->urls as $link) {
+						if (FALSE !== strpos($link->expanded_url, 'open.spotify.com')) {
+							// found
+							$splink = $link->expanded_url;
+						}
+					}
+				}
+				// check for spotify direct link
+				
+				//spotify:track:14cdiU9uL7HSYf8oaHyoCF
+				//spotify:artist:6NaTOhsj6iiUNONPrE980Z
+				//spotify:user:stanton:playlist:40ykJaHDstCHFP3go1fSFe
+				if (FALSE !== strpos($tweet, 'spotify:track')) {
+					// spofifydirect link
+					preg_match('(spotify:track:\w+)', $tweet, $splink);
+					$splink = $splink[0];
+				}
+				if (FALSE !== strpos($tweet, 'spotify:artist')) {
+					// spofifydirect link
+					preg_match('(spotify:artist:\w+)', $tweet, $splink);
+					$splink = $splink[0];
+				}
+				
+				if ($splink) {
+					// convert link
+					if (FALSE !== strpos($splink, 'open.spotify.com')) {
+						// found
+						$url = str_replace('http://', '', $splink);
+						list($shit, $method, $key) = explode('/', $url);
+					}
+					if (FALSE !== strpos($splink, 'spotify:track') || FALSE !== strpos($splink, 'spotify:artist')) {
+						list($shit, $method, $key) = explode(':', $splink);
+					}
+					
+					$target = 'lookup_' . $method;
+					$spotify = new Spotify();
+//					echo 'call ' . $target;
+					if ($method == 'artist') {
+						$extra = 'album';
+					} else if ($method == 'track') {
+						$extra = '';
+					}
+					$data = $spotify->$target('spotify:' . $method . ':' . $key, $extra);
 
-				// strip the @
-				$test = preg_replace('/(\@\w+)/', '', $tweet);
-				// string the #tag
-				$test = preg_replace('/(\#\w+)/', '', $test);
-				// search for end of string or special character
-				// currenly , . or !
-				$test = preg_replace('/([,!] [\w\s]+)/', '', $test);
-				$test = preg_replace('/([. ] [\w\s]+)/', '', $test);
+					if ($method == 'artist') {
+						$test = $data->artist->albums[0]->album->artist;
+					} else if ($method == 'track') {
+						$test = $data->track->artists[0]->name;
+					}
+					// use item link
+					$result = 'spotify:' . $method . ':' . $key;
+				} else {
+					// strip the @
+					$test = preg_replace('/(\@\w+)/', '', $tweet);
+					// string the #tag
+					$test = preg_replace('/(\#\w+)/', '', $test);
+					// search for end of string or special character
+					// currenly , . or !
+					$test = preg_replace('/([,!] [\w\s]+)/', '', $test);
+					$test = preg_replace('/([. ] [\w\s]+)/', '', $test);
 				
-				// trim
-				$test = trim($test);
-				
-				// test whats left for an artist
-				$result = $this->end($test);
+					// trim
+					$test = trim($test);
+					
+					// test whats left for an artist
+					$result = $this->end($test);
+				}
 				
 				if ($result) {
 					$data = array(
