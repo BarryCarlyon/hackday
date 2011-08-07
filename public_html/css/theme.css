@@ -29,7 +29,7 @@ body {
 	clear: both;
 	overflow: hidden;
 }
-#nav {
+#nav, #listened {
 	margin: 5px 0px;
 }
 #nav ul li {
