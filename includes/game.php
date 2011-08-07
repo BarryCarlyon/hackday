@@ -116,13 +116,16 @@ class game {
 					}
 					$data = $spotify->$target('spotify:' . $method . ':' . $key, $extra);
 
+					$akey = 'artist-id';
 					if ($method == 'artist') {
 						$test = $data->artist->albums[0]->album->artist;
+						$artisturi = $data->artist->albums[0]->album->$akey;
 					} else if ($method == 'track') {
 						$test = $data->track->artists[0]->name;
+						$artisturi = $data->track->artists[0]->href;
 					}
 					// use item link
-					$result = 'spotify:' . $method . ':' . $key;
+					$result = array('trackuri' => 'spotify:' . $method . ':' . $key, 'artisturi' => $artisturi);
 				} else {
 					// strip the @
 					$test = preg_replace('/(\@\w+)/', '', $tweet);
@@ -144,8 +147,9 @@ class game {
 					$data = array(
 						'user'		=> $from,
 						'artist'	=> $test,
-						'url'		=> $result,
-						'mid'		=> $mention->id_str
+						'url'		=> $result['trackuri'],
+						'mid'		=> $mention->id_str,
+						'string'	=> $from . ' suggested <a href="' . $result['trackuri'] . '">' . $test . '</a> <a href="#playlist" class="getplaylist" artist="' . $test . '" artisturi="' . $result['artisturi'] . '">Get Playlist</a>'
 					);
 					$jsons[] = $data;
 				}
@@ -199,7 +203,8 @@ class game {
 			shuffle($tracks);
 			$track = array_pop($tracks);
 			$trackuri = $track->href;
-			return $trackuri;
+			
+			return array('trackuri' => $trackuri, 'artisturi' => $artist_id);
 //			return $result_1->href;
 		} else {
 			return FALSE;

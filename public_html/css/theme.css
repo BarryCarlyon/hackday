@@ -27,6 +27,7 @@ body {
 #wrap, #nav {
 	display: block;
 	clear: both;
+	overflow: hidden;
 }
 #nav {
 	margin: 5px 0px;
@@ -36,7 +37,7 @@ body {
 	display: inline;
 }
 
-#wrap div, fieldset {
+#wrap div, #playlistcontent {
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
@@ -103,4 +104,10 @@ fieldset {
 
 #game_responses {
 	padding: 10px;
+}
+
+#playlistcontent {
+	padding: 3px;
+	width: 100%;
+	height: 200px;
 }

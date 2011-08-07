@@ -24,9 +24,9 @@ function update_game() {
 			}
 
 			if (jQuery('#game_responses').html()) {
-				jQuery('#game_responses').html(jQuery('#game_responses').html() + '<br />' + entry['user'] + ' suggested <a href="' + entry['url'] + '">' + entry['artist'] + '</a>');
+				jQuery('#game_responses').html(jQuery('#game_responses').html() + '<br />' + entry['string']);
 			} else {
-				jQuery('#game_responses').html(entry['user'] + ' suggested <a href="' + entry['url'] + '">' + entry['artist'] + '</a>');
+				jQuery('#game_responses').html(entry['string']);
 			}
 			total_results++;
 			
@@ -46,3 +46,30 @@ function update_game() {
 	}
 	request_count++;
 }
+
+jQuery(document).ready(function() {
+	jQuery('.getplaylist').live('click', function() {
+		artist = jQuery(this).attr('artisturi');
+		
+		jQuery.get('/json/', 'playlist=' + artist, function(data) {
+			jQuery('<div class="playlistdialog">' + data + '</div>').dialog({
+				draggable: false,
+				modal: true,
+				resizable: true,
+				title: 'Playlist',
+				width: 500,
+				close: function(event, ui) {
+					jQuery('.playlistdialog').remove();
+				}
+			});
+		});
+	});
+	
+//	jQuery('#playlistbutton').live('mousedown', function() {
+//		jQuery('#playlistcontent').select();
+//	});
+	jQuery('#playlistcontent').live('mouseover click', function() {
+		console.log('clicked');
+		jQuery('#playlistcontent').select();
+	});
+});
