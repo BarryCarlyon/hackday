@@ -74,7 +74,8 @@ class game {
 				$test = preg_replace('/(\#\w+)/', '', $test);
 				// search for end of string or special character
 				// currenly , . or !
-				$test = preg_replace('/([,.!] [\w\s]+)/', '', $test);
+				$test = preg_replace('/([,!] [\w\s]+)/', '', $test);
+				$test = preg_replace('/([. ] [\w\s]+)/', '', $test);
 				
 				// trim
 				$test = trim($test);
@@ -109,17 +110,25 @@ class game {
 		if ($result_1 = @$data->artists[0]) {
 			// artist found
 			// album
-			$albums = $spotify->lookup_artist($result_1->href, 'album');
+			$artist_id = $result_1->href;
+			
+			$albums = $spotify->lookup_artist($artist_id, 'album');
 			$albums = $albums->artist->albums;
 			
 			// stop
 			// non various artists please
 			$misc_albums = $albums;
 			$albums = array();
+			
+			$key = 'artist-id';
+			
 			foreach ($misc_albums as $album) {
-				if ($album->album->artist == $artist) {
-					// keeper
-					$albums[] = $album;
+//				if (strtolower($album->album->artist) == strtolower($artist)) {
+				if (isset($album->album->$key)) {
+					if ($album->album->$key == $artist_id) {
+						// keeper
+						$albums[] = $album;
+					}
 				}
 			}
 			

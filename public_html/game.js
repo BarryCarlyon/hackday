@@ -11,7 +11,9 @@ var lastid = 0;
 var request_count = 0;
 
 function update_game() {
+	console.log('update game: ' + post);
 	jQuery.getJSON('/json/', post, function(data) {
+		console.log('got data');
 		for (x in data) {
 			entry = data[x];
 
@@ -34,7 +36,7 @@ function update_game() {
 		}
 	});
 	
-	if (total_results < 20 && request_count < 10) {
+	if (total_results < 20 && request_count < 60) {
 		setTimeout('update_game()', 5000);
 	} else {
 		jQuery('#game_responses').html(jQuery('#game_responses').html() + '<br />Stopped looking for Responses<br />We Suggest you Listen to <a href="spotify:track:6JEK0CvvjDjjMUBFoXShNZ">this</a>');
