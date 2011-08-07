@@ -200,7 +200,7 @@ class game {
 				$territories = strtolower($album->album->availability->territories);
 				$territories = explode(' ', $territories);
 				$albumuri = FALSE;
-				if (in_array(strtolower($_SESSION['country'], $territories))) {
+				if (in_array(strtolower($_SESSION['country']), $territories)) {
 					$albumuri = $album->album->href;
 				}
 				
