@@ -221,7 +221,11 @@ class game {
 				}
 			} else {
 				// hmm
-				$albumuri = $album->album->href;
+				if (isset($album->ablum->href)) {
+					$albumuri = $album->album->href;
+				} else {
+					return FALSE;
+				}
 			}
 			
 			
