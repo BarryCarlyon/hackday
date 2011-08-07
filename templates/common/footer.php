@@ -21,11 +21,14 @@ while ($row = $db->fetch_row($data)) {
 	$line .= ' listening to ' . $row['played'] . ' suggested by ' . $row['refer'];
 	$line .= '</div>';
 	
+	echo $line;
+/*	
 	echo '
 <script type="text/javascript">
 	jQuery(\'' . $line . '\').hide().prependTo(\'#listened\').slideDown();
 </script>
 ';
+*/
 }
 
 ?>
