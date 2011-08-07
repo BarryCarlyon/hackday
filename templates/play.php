@@ -17,7 +17,7 @@ if (@$_SESSION['tweet_sent'] && $json == 1) {
 	$tweet = 'I am playing #SpotifyRoulette, suggest me an artist via reply and I will listen to them!';
 	
 	$game = new game($tweet);
-	echo '<p>We will play the First Response. But you can listen to other response just click a link</p>';
+	echo '<p>We will play the First Response. But you can listen to other responses or even start a Playlist just click the links</p>';
 	echo '<p>There is a small chance we will grab a track not available in your Country</p>';
 
 	if ($game->setup($tweet)) {
@@ -42,7 +42,7 @@ if (@$_SESSION['tweet_sent'] && $json == 1) {
 			} else {
 				$query = 'INSERT INTO twitter_recent(screen_name, profile_image) VALUES (\'' . $_SESSION['twitter_screen_name'] . '\', \'' . $avatar . '\')';
 			}
-			$db->query($query);
+			$db->get_query($query);
 		}
 	} else {
 		echo '<p>An Error Occured. As a Result, you have Lost the Game!!!</p>';

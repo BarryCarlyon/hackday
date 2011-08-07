@@ -17,7 +17,7 @@ while ($row = $db->fetch_row($data)) {
 	echo '<img src="' . $row['profile_image'] . '" alt="' . $row['screen_name'] . '" title="' . $row['screen_name'] . '" />';
 	echo $row['screen_name'] . ' ';
 	
-	if ($row['unixtos'] < (time() - 2500)) {
+	if ($row['unixtos'] > (time() - 300)) {
 		echo 'is';
 	} else {
 		echo 'was';

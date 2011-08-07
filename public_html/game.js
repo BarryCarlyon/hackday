@@ -71,11 +71,11 @@ jQuery(document).ready(function() {
 		});
 	});
 	
-//	jQuery('#playlistbutton').live('mousedown', function() {
-//		jQuery('#playlistcontent').select();
-//	});
 	jQuery('#playlistcontent').live('mouseover click', function() {
-		console.log('clicked');
 		jQuery('#playlistcontent').select();
+	});
+	jQuery('.playartist').live('click', function() {
+		extra = 'playing=' + escape(jQuery(this).attr('artist')) + '&refer=' + jQuery(this).attr('suggest');
+		jQuery.get('/json/', extra);
 	});
 });

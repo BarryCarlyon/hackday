@@ -31,7 +31,7 @@ class game {
 		}
 		$this->tweet = $tweet;
 		
-		echo '<div id="game_responses"><script type="text/javascript">start_game();</script>Waiting for Responses...</div>';
+		echo '<div id="game_responses"><script type="text/javascript">jQuery(document).ready(function() {start_game();});</script>Waiting for Responses...</div>';
 		return TRUE;
 	}
 	
@@ -149,7 +149,7 @@ class game {
 						'artist'	=> $test,
 						'url'		=> $result['trackuri'],
 						'mid'		=> $mention->id_str,
-						'string'	=> $from . ' suggested <a href="' . $result['trackuri'] . '">' . $test . '</a> <a href="#playlist" class="getplaylist" artist="' . $test . '" artisturi="' . $result['artisturi'] . '">Get Playlist</a>'
+						'string'	=> $from . ' suggested <a href="' . $result['trackuri'] . '" class="playartist" artist="' . $test . '" suggest="' . $from . '">' . $test . '</a> <a href="#playlist" class="getplaylist" artist="' . $test . '" artisturi="' . $result['artisturi'] . '">Get Playlist</a>'
 					);
 					$jsons[] = $data;
 				}
