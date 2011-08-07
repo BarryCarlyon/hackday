@@ -52,7 +52,7 @@ class game {
 //		print_r($_SESSION);
 		$target_id = $_SESSION['game_tweet_id'];
 		$since_id = isset($_REQUEST['mid']) ? $_REQUEST['mid'] : $_SESSION['game_tweet_id'];
-		$reverse_mentions = $this->connection->get('statuses/mentions', array('since_id' => $since_id));
+		$reverse_mentions = $this->connection->get('statuses/mentions', array('since_id' => $since_id, 'include_rts' => '1'));
 		// meed to reverse
 		// and update since_id
 		
@@ -65,7 +65,7 @@ class game {
 			$response_to = $mention->in_reply_to_status_id;
 			$from = $mention->user->screen_name;
 			
-			if ($response_to == $target_id) {
+//			if ($response_to == $target_id) {
 				// a response
 
 				// strip the @
@@ -92,7 +92,7 @@ class game {
 					);
 					$jsons[] = $data;
 				}
-			}
+//			}
 //			$_SESSION['game_since_id'] = $mention->id;
 //			print_r($_SESSION);
 		}

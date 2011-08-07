@@ -11,7 +11,7 @@ var lastid = 0;
 var request_count = 0;
 
 function update_game() {
-	console.log('update game: ' + post);
+	console.log('update game: ' + post + ' check ' + request_count + '/60');
 	jQuery.getJSON('/json/', post, function(data) {
 		console.log('got data');
 		for (x in data) {
