@@ -7,7 +7,7 @@ class config {
 	var $database = array();
 	
 	function __construct() {
-		$database = array(
+		$this->database = array(
 			'host'	=> 'localhost',
 			'user'	=> 'root',
 			'pass'	=> '',

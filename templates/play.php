@@ -40,7 +40,7 @@ if (@$_SESSION['tweet_sent'] && $json == 1) {
 				
 				$query = 'UPDATE twitter_recent SET profile_image = \'' . $avatar . '\', tos = NOW() WHERE ref_id = ' . $row['ref_id'];
 			} else {
-				$query = 'INSERT INTO twitter_resent(screen_name, profile_image) VALUES (\'' . $_SESSION['twitter_screen_name'] . '\', \'' . $avatar . '\')';
+				$query = 'INSERT INTO twitter_recent(screen_name, profile_image) VALUES (\'' . $_SESSION['twitter_screen_name'] . '\', \'' . $avatar . '\')';
 			}
 			$db->query($query);
 		}

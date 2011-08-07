@@ -99,7 +99,8 @@ class db {
 		return mysqli_fetch_array($result);
 	}
 	function handle_error($error = '') {
-		trigger_error('SQL_ERROR', E_USER_ERROR);
+//		trigger_error('SQL_ERROR', E_USER_ERROR);
+		echo mysqli_error($this->connect_id);
 		return;
 	}
 	function table_exist($table) {

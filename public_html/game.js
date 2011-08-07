@@ -21,6 +21,7 @@ function update_game() {
 				run = 0;
 				top.location = entry['url'];
 				jQuery('#game_responses').html('');
+				jQuery.get('/json/', 'playing=' + escape(entry['artist']) + '&refer=' + entry['user']);
 			}
 
 			if (jQuery('#game_responses').html()) {
@@ -46,6 +47,7 @@ function update_game() {
 		}
 		if (run) {
 			top.location = 'spotify:track:6JEK0CvvjDjjMUBFoXShNZ';
+			jQuery.get('/json/', 'playing=Rick');
 		}
 	}
 	request_count++;
