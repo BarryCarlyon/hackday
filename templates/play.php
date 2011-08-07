@@ -3,6 +3,9 @@
 if (@$_POST['game_start']) {
 	unset($_SESSION['tweet_sent']);
 }
+if (@$_GET['override']) {
+	$_SESSION['game_tweet_id'] = $_GET['override'];
+}
 $json = isset($json) ? $json : 0;
 
 if (@$_SESSION['tweet_sent'] && $json == 1) {
