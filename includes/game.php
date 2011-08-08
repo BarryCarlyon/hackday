@@ -138,7 +138,7 @@ class game {
 					$test = preg_replace('/(\#\w+)/', '', $test);
 					// search for end of string or special character
 					// currenly , . or !
-					$test = preg_replace('/([,!] [\w\s]+)/', '', $test);
+					$test = preg_replace('/([,!?] [\w\s]+)/', '', $test);
 					$test = preg_replace('/([. ] [\w\s]+)/', '', $test);
 				
 					// trim
