@@ -14,7 +14,7 @@ include('twitteroauth/twitteroauth.php');
 $default = 'home';
 
 $tried = '';
-$page = $_GET['page'] ? $_GET['page'] : 'home';
+$page = (isset($_GET['page']) && $_GET['page']) ? $_GET['page'] : 'home';
 
 // adjust
 if (substr($page, -1, 1) == '/') {
