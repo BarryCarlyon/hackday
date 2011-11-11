@@ -18,7 +18,7 @@ if (@$_SESSION['tweet_sent'] && $json == 1) {
 	echo '<h2>Playing Spotify Roulette</h2>';
 	// tweet not sent
 	$tweet = 'I am playing #SpotifyRoulette, suggest me an artist via reply and I will listen to them!';
-	$tweet = !empty($_POST['custom_tweet_text']) ? $_POST['custom_tweet_text'] : $tweet;
+	$tweet = isset($_POST['tweet_text']) ? $_POST['tweet_text'] : $tweet;
 	
 	$game = new game($tweet);
 	echo '<p>We will play the First Response. But you can listen to other responses or even start a Playlist just click the links</p>';
@@ -37,7 +37,7 @@ if (@$_SESSION['tweet_sent'] && $json == 1) {
 			if ($db->total_rows) {
 				$row = $db->fetch_row($result);
 				
-				$query = 'UPDATE twitter_recent SET profile_image = \'' . $avatar . '\', tos = NOW() WHERE ref_id = ' . $row['ref_id'];
+				$query = 'UPDATE twitter_recent SET profile_image = \'' . $avatar . '\', tos = NOW(), played = \'amwaiting\' WHERE ref_id = ' . $row['ref_id'];
 			} else {
 				$query = 'INSERT INTO twitter_recent(screen_name, profile_image) VALUES (\'' . $_SESSION['twitter_screen_name'] . '\', \'' . $avatar . '\')';
 			}

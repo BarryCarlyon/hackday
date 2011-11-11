@@ -18,87 +18,51 @@
 <link rel="icon" type="image/gif" href="/favicon.gif" /> 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" media="screen=" href="/css/bootstrap.min.css" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.15/jquery-ui.min.js"></script>
 <link rel="stylesheet" type="text/css" media="screen" href="http://jquery-ui.googlecode.com/svn/tags/latest/themes/base/jquery.ui.all.css" />
 <script type="text/javascript" src="/game.js"></script>
+<!--
 <link rel="stylesheet" type="text/css" media="screen" href="/css/theme.css" />
+-->
+<script type="text/javascript" src="/js/bootstrap-modal.js"></script>
+<script type="text/javascript" src="/js/bootstrap-alerts.js"></script>
+<script type="text/javascript" src="/js/bootstrap-twipsy.js"></script>
+<script type="text/javascript" src="/js/bootstrap-popover.js"></script>
+<script type="text/javascript" src="/js/bootstrap-dropdown.js"></script>
+<script type="text/javascript" src="/js/bootstrap-scrollspy.js"></script>
+<script type="text/javascript" src="/js/bootstrap-tabs.js"></script>
+<script type="text/javascript" src="/js/bootstrap-buttons.js"></script>
 
 </head>
-<body>
+<body style="padding-top: 40px;">
+<div class="container">
 
-<div id="nav">
+<div class="topbar">
+	<div class="topbar-inner">
+	        <div class="container">
+			<h3><a href="/">Spotify Roulette</a></h3>
+			<ul class="nav">
+				<li><a href="/">Home</a></li>
+				<li><a href="/play/">Play</a></li>
+			</ul>
+			<ul class="secondary-nav">
 <?php
-
-if ($page != 'home') {
-	// breadcrumbs
-	echo '<ul>';
-	echo '<li><a href="/">Home</a></li>';
-	echo '<li>&gt;</li>';
-	echo '<li><a href="/' . $page . '/">' . ucwords($page) . '</a></li>';
-	echo '</ul>';
-}
-
-?>
-</div>
-
-<div id="wrap">
-
-<?php
-echo run_error_message();
-
-echo '<div id="right_column">
-<div id="profile">
-';
-
 if ($login->is_logged_in) {
-	echo $login->twitter_profile();
+echo '
+				<li><a href="/logout/">Logout</a></li>
+';
 } else {
-	include(TEMPLATES . 'login.php');
+echo '
+				<li><a href="/login/" id="loginwithtwitter">Login with Twitter to Play</a></li>
+';
 }
-
 ?>
+			</ul>
+		</div>
 	</div>
-	
-<?php
-if ($page != 'play') {
-	// the widget breaks the ajax response.....
-?>
-<div id="twitter_widget">
-	<script type="text/javascript" src="http://widgets.twimg.com/j/2/widget.js"></script>
-	<script type="text/javascript">
-	new TWTR.Widget({
-	  version: 2,
-	  type: 'profile',
-	  rpp: 4,
-	  interval: 6000,
-	  width: 250,
-	  height: 300,
-	  theme: {
-	    shell: {
-	      background: '#333333',
-	      color: '#ffffff'
-	    },
-	    tweets: {
-	      background: '#000000',
-	      color: '#ffffff',
-	      links: '#4aed05'
-	    }
-	  },
-	  features: {
-	    scrollbar: false,
-	    loop: false,
-	    live: false,
-	    hashtags: true,
-	    timestamp: true,
-	    avatars: false,
-	    behavior: 'all'
-	  }
-	}).render().setUser('SpotifyRoulette').start();
-	</script>
 </div>
-<?php	
-}
-?>
-</div>
-<div id="left_column">
+
+<div class="row">
+	<div class="span11">

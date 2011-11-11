@@ -9,12 +9,13 @@ class login {
 	var $connection;
 
 	function __construct() {
-		global $config;
+		global $config, $page;
 		session_start();
 		
 		// detcech call backs
 		// twitters
-		if (@$_POST['go_login'] == 'twitter') {
+//		if (@$_POST['go_login'] == 'twitter') {
+		if ($page == 'login' && !$_SESSION['go_login']) {
 			$_SESSION['go_login'] = 'twitter';
 			$this->twitter_login();
 		}
@@ -148,7 +149,7 @@ class login {
 			$return .= $game->form();
 		}
 		
-		$return .= '<p><a href="/logout/">Logout</a></p>';
+//		$return .= '<p><a href="/logout/">Logout</a></p>';
 		$return .= '</div>';
 		
 		return $return;

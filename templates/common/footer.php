@@ -1,5 +1,61 @@
 	</div>
+
+	<div class="span5">
+
+<?php
+//echo run_error_message();
+
+if ($login->is_logged_in) {
+	echo $login->twitter_profile();
+} else {
+	include(TEMPLATES . 'login.php');
+}
+
+?>
+	
+<?php
+if ($page != 'play') {
+	// the widget breaks the ajax response.....
+?>
+<div id="twitter_widget">
+	<script type="text/javascript" src="http://widgets.twimg.com/j/2/widget.js"></script>
+	<script type="text/javascript">
+	new TWTR.Widget({
+	  version: 2,
+	  type: 'profile',
+	  rpp: 4,
+	  interval: 6000,
+	  width: 250,
+	  height: 300,
+	  theme: {
+	    shell: {
+	      background: '#333333',
+	      color: '#ffffff'
+	    },
+	    tweets: {
+	      background: '#000000',
+	      color: '#ffffff',
+	      links: '#4aed05'
+	    }
+	  },
+	  features: {
+	    scrollbar: false,
+	    loop: false,
+	    live: false,
+	    hashtags: true,
+	    timestamp: true,
+	    avatars: false,
+	    behavior: 'all'
+	  }
+	}).render().setUser('SpotifyRoulette').start();
+	</script>
 </div>
+<?php	
+}
+?>
+
+	</div><!-- span6 -->
+</div><!-- row -->
 
 <div id="listened">
 <?php
@@ -12,13 +68,17 @@ while ($row = $db->fetch_row($data)) {
 	$line .= '<img src="' . $row['profile_image'] . '" alt="' . $row['screen_name'] . '" title="' . $row['screen_name'] . '" />';
 	$line .= $row['screen_name'] . ' ';
 	
-	if ($row['unixtos'] > (time() - 300)) {
-		$line .= 'is';
+	if ($row['played'] == 'amwaiting') {
+		$line .= ' is currently waiting for a Suggestion';
 	} else {
-		$line .= 'was';
-	}
+		if ($row['unixtos'] > (time() - 300)) {
+			$line .= 'is';
+		} else {
+			$line .= 'was';
+		}
 	
-	$line .= ' listening to ' . $row['played'] . ' suggested by ' . $row['refer'];
+		$line .= ' listening to ' . $row['played'] . ' suggested by ' . $row['refer'];
+	}
 	$line .= '</div>';
 	
 	echo $line;
@@ -57,5 +117,6 @@ while ($row = $db->fetch_row($data)) {
 
 </script>
 
+</div>
 </body>
 </html>

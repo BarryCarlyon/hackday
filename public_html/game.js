@@ -52,6 +52,7 @@ function update_game() {
 		}
 	}
 	request_count++;
+jQuery('#game_responses').html(jQuery('#game_responses').html() + '-count:' + request_count);
 }
 
 jQuery(document).ready(function() {
@@ -86,12 +87,17 @@ jQuery(document).ready(function() {
 	});
 	
 	jQuery('#custom_tweet').click(function() {
-		jQuery('<div><textarea id="the_custom_tweet" style="width: 300px; height: 200px;">I am playing #SpotifyRoulette, suggest me an artist via reply and I will listen to them!</textarea><br /><input type="submit" onclick="custom_tweet()" value="Submit" />').dialog({
-			draggable: false,
-			modal: true,
-			resizable: true,
-			title: 'Custom Tweet',
-			width: '350px'
+//		jQuery('<div><textarea id="the_custom_tweet" style="width: 300px; height: 200px;">I am playing #SpotifyRoulette, suggest me an artist via reply and I will listen to them!</textarea><br /><input type="submit" onclick="custom_tweet()" value="Submit" />').dialog({
+//			draggable: false,
+//			modal: true,
+//			resizable: true,
+//			title: 'Custom Tweet',
+//			width: '350px'
+//		});
+		jQuery('#custom_tweet_modal').modal({
+			backdrop: true,
+			keyboard: true,
+			show: true
 		});
 	});
 });

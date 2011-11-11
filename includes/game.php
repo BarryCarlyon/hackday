@@ -17,10 +17,26 @@ class game {
 		return '
 <form action="/play/" method="post" id="spin_form"><fieldset>
 	<input type="hidden" name="game_start" value="1" />
-	<label for="custom_tweet">Custom Tweet: <input type="checkbox" name="custom_tweet" id="custom_tweet" /></label>
-	<input type="text" name="custom_tweet_text" id="custom_tweet_text" style="display: none;" />
-	<input type="submit" value="Play Spotify Roulette" id="play_spotify_roulette" />
+	<a href="#" class="btn info" id="custom_tweet">Specify Tweet</a>
+	<a href="#" class="btn danger" id="play_spotify_roulette" onclick="jQuery(\'#spin_form\').submit();">Play Roulette</a>
 </fieldset></form>
+
+<div id="custom_tweet_modal" class="modal hide fade">
+	<div class="modal-header">
+		<a href="#" class="close">&times;</a>
+		<h3>Modal Heading</h3>
+	</div>
+	<div class="modal-body">
+		<form action="/play/" method="post" id="spin_form_modal"><fieldset>
+			<input type="hidden" name="game_start" value="1" />
+			<textarea name="tweet_text" id="the_custom_tweet" style="width: 100%; height: 50px;">I am playing #SpotifyRoulette, suggest me an artist via reply and I will listen to them!</textarea>
+		</fieldset>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn primary" onclick="jQuery(\'#custom_tweet_modal\').modal(\'hide\');jQuery(\'#spin_form_modal\').submit();"">Play Roulette</a>
+	</div>
+</div>
 ';
 	}
 	
